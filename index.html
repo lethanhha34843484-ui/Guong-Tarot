@@ -1,0 +1,817 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gương Tarot — Nhìn một vấn đề rộng hơn</title>
+<meta name="theme-color" content="#071512" />
+<meta name="description" content="Gương Tarot — công cụ phản tư dùng Tarot như một stimulus biểu tượng để mở góc nhìn, không phải lời tiên tri." />
+<link rel="manifest" href="/manifest.webmanifest" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Gương Tarot — Nhìn một vấn đề rộng hơn" />
+<meta property="og:description" content="Một chiếc gương nhỏ để nhìn rộng hơn — reflective, not oracle." />
+<meta property="og:image" content="/assets/social-preview.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Gương Tarot — Nhìn một vấn đề rộng hơn" />
+<meta name="twitter:description" content="Một chiếc gương nhỏ để nhìn rộng hơn — reflective, not oracle." />
+<meta name="twitter:image" content="/assets/social-preview.jpg" />
+
+<style>
+:root{--bg:#071512;--panel:#0d211c;--panel2:#112a23;--line:#28463d;--gold:#d7b55b;--cream:#e8eadf;--muted:#9fb1aa;--accent:#79b894;--danger:#d98778}
+*{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at 20% 0%,#12352b 0,#071512 42%);color:var(--cream);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}
+.app{max-width:980px;margin:auto;padding:24px 18px 60px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:28px}.brand{letter-spacing:.02em}.brand b{font-size:22px}.brand span{display:block;color:var(--muted);font-size:12px;margin-top:2px}.badge{border:1px solid #5c5431;color:var(--gold);padding:7px 11px;border-radius:999px;font-size:12px}
+.hero{padding:26px 0 18px}.hero h1{font-family:Georgia,serif;font-weight:500;font-size:clamp(34px,7vw,62px);line-height:1.02;margin:0 0 14px}.hero p{max-width:760px;color:#c1cbc5;font-size:17px;margin:0}.whisper{color:var(--gold);font-size:13px;margin-top:12px}
+.progress{display:flex;gap:7px;margin:20px 0 28px}.dot{height:5px;flex:1;border-radius:5px;background:#193129}.dot.on{background:var(--gold)}
+.card{background:rgba(13,33,28,.9);border:1px solid var(--line);border-radius:20px;padding:22px;margin:16px 0;box-shadow:0 12px 40px rgba(0,0,0,.15)}.card h2{margin:0 0 6px;font-size:22px}.sub{color:var(--muted);font-size:14px;margin-bottom:18px}
+textarea,input{width:100%;background:#071a16;border:1px solid #35534a;border-radius:14px;color:var(--cream);padding:14px 15px;font:inherit;outline:none}textarea:focus,input:focus{border-color:#79b894;box-shadow:0 0 0 3px rgba(121,184,148,.08)}textarea{min-height:115px;resize:vertical}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}.btn{border:1px solid #52654d;background:#122a23;color:var(--cream);padding:11px 15px;border-radius:12px;cursor:pointer;font-weight:650}.btn:hover{filter:brightness(1.12)}.btn:disabled{opacity:.45;cursor:not-allowed;filter:none}.btn.primary{background:#b99645;color:#10150f;border-color:#d7b55b}.btn.ghost{background:transparent}.btn.small{padding:8px 11px;font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{border:1px solid #35534a;border-radius:999px;padding:8px 12px;color:#c7d1cb;cursor:pointer;background:#0b201b;font-size:13px}.chip.sel{border-color:var(--gold);color:var(--gold);background:#171d13}
+.filter-note{font-size:12px;color:var(--accent);margin:10px 0 16px}.frameworks{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:11px}.fw{border:1px solid var(--line);background:#0b1e19;border-radius:16px;padding:15px;cursor:pointer}.fw:hover{border-color:#557768}.fw.sel{border-color:var(--gold);box-shadow:0 0 0 1px #7e6835 inset}.fw b{display:block;font-size:16px}.fw .en{font-size:12px;color:var(--gold);letter-spacing:.03em}.fw .meta{font-size:12px;color:#a9bcb4;margin-top:6px}.fw p{font-size:13px;color:var(--muted);margin:6px 0 0}.fit{float:right;font-size:11px;color:var(--accent)}
+.alt{border:1px dashed #665a34;background:#111b16}.alt .en{color:#cbb06a}.section-label{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#91a69e;margin:18px 0 9px}
+.copyline{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;margin:8px 0}.copytext{background:#06130f;border:1px solid #304c43;border-radius:11px;padding:10px 12px;font-size:13px;color:#d8ded9}.copyline .btn{padding:8px 10px;font-size:12px}.custom-tools{margin-top:18px;padding-top:16px;border-top:1px solid #28463d}.recommend-badge{display:inline-block;border:1px solid #5c5431;color:var(--gold);border-radius:999px;padding:4px 8px;font-size:11px;margin-bottom:8px}.position{display:grid;grid-template-columns:50px 1fr;gap:12px;align-items:start;padding:12px 0;border-top:1px solid #1f3931}.num{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;border:1px solid #5b6748;color:var(--gold);font-size:13px}.pos b{font-size:15px}.pos small{display:block;color:var(--muted);margin-top:2px}.framework-tag{display:inline-block;border:1px solid #3d594e;border-radius:999px;padding:4px 8px;font-size:11px;color:#b8c8c1;margin:5px 0 12px}.choice-tabs{display:flex;gap:8px;margin:16px 0 12px;flex-wrap:wrap}.choice-tab{border:1px solid var(--line);background:#0b1e19;color:var(--muted);border-radius:999px;padding:10px 14px;cursor:pointer;font:inherit;font-size:13px}.choice-tab.active{border-color:var(--gold);color:var(--cream);box-shadow:0 0 0 1px #7e6835 inset}.manual-head{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.manual-search{flex:1;min-width:220px;background:#06130f;border:1px solid #304c43;border-radius:12px;padding:11px 12px;color:var(--cream);font:inherit}.manual-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:9px}.manual-item{border:1px solid var(--line);background:#0b1e19;border-radius:14px;padding:12px;cursor:pointer}.manual-item:hover,.manual-item.sel{border-color:var(--gold)}.manual-item b{display:block}.manual-item .meta{font-size:12px;color:var(--muted);margin-top:4px}
+.copybox{background:#06130f;border:1px dashed #52634f;border-radius:14px;padding:16px;color:#d8ded9;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;line-height:1.6;max-height:420px;overflow:auto;white-space:pre-wrap}.note{font-size:12px;color:var(--muted);margin-top:8px}.hidden{display:none}.footer{color:#74857f;text-align:center;font-size:12px;margin-top:30px}.mini-title{font-size:14px;font-weight:700;margin:4px 0}.gold{color:var(--gold)}
+@media(max-width:600px){.app{padding:16px 12px 45px}.card{padding:17px;border-radius:17px}.hero h1{font-size:42px}.top{align-items:flex-start}.badge{font-size:10px}.frameworks{grid-template-columns:1fr}}
+
+/* v5 — learning-first, calm UX */
+.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.09em;color:#91a69e;margin-bottom:7px}
+.trustbar{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0}.trustpill{border:1px solid #2f4d43;background:#0b1d18;border-radius:999px;padding:6px 10px;font-size:11px;color:#b9c8c2}.trustpill b{color:#d8ded9}
+.guide{background:linear-gradient(180deg,rgba(17,42,35,.8),rgba(9,28,23,.65));border:1px solid #2f4d43;border-radius:16px;padding:15px;margin:14px 0}.guide h3{font-size:15px;margin:0 0 6px}.guide p{font-size:13px;color:#b8c6c0;margin:6px 0}.guide .logic{color:#e3e6df;font-weight:650}
+.helper{font-size:13px;color:#aebdb7;margin-top:8px}.helper strong{color:#d9ded9}.safe-note{border-left:2px solid #6e8054;padding:9px 12px;color:#aebcb6;font-size:12px;margin-top:12px;background:#0b1d18}
+.detail{margin-top:16px;border-top:1px solid #28463d;padding-top:16px}.detail h3{font-size:17px;margin:0 0 8px}.position{padding:14px 0}.pos b{display:block}.pos .tl{display:block;color:#b7c5bf;font-size:13px;margin-top:3px}.pos .vi{display:block;color:#e0e4df;font-size:13px;margin-top:7px;padding:8px 10px;border-radius:10px;background:#0a1b17;border:1px solid #233e35}.pos .vi:before{content:'Gương giải thích · ';color:var(--gold);font-weight:700}
+.lesson-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.confidence{font-size:10px;border:1px solid #53614b;border-radius:999px;padding:5px 8px;color:#c6d0c8;white-space:nowrap}.confidence.provisional{border-color:#795f37;color:#d7b55b}
+.step-intro{margin:-3px 0 14px;color:#bac7c1;font-size:14px}.why{color:#d7ded8;font-size:13px;margin:10px 0}.why b{color:var(--gold)}
+.progress-label{display:flex;justify-content:space-between;color:#7f948c;font-size:11px;margin-top:-20px;margin-bottom:14px}
+@media(max-width:600px){.lesson-head{display:block}.confidence{display:inline-block;margin-top:8px}.trustbar{gap:6px}.trustpill{font-size:10px}}
+
+.hero-visual{margin:14px 0 26px;border-radius:22px;overflow:hidden;border:1px solid #28463d;box-shadow:0 18px 50px rgba(0,0,0,.22);background:#0d211c}.hero-visual img{display:block;width:100%;height:auto;aspect-ratio:8/3;object-fit:cover}.hero-visual-note{display:none}@media(max-width:600px){.hero-visual{border-radius:17px;margin:10px 0 20px}.hero-visual img{aspect-ratio:16/7}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="top"><div class="brand"><b>Gương Tarot</b><span>một chiếc gương nhỏ để nhìn rộng hơn</span></div><div class="badge">REFLECTIVE · NOT ORACLE</div></div>
+  <div class="hero-visual"><img src="/assets/hero.jpg" alt="Không gian phản tư với mặt nước, sách, bài Tarot và phong cảnh bình minh" fetchpriority="high" /></div>
+  <div class="hero">
+    <h1>“Cậu đang băn khoăn điều gì?”</h1>
+    <p>Cậu đặt câu hỏi. Gương giúp chọn <b>mô thức nhìn</b>. TarotLab cung cấp sự ngẫu nhiên. GPT giúp đối thoại với những gì hiện ra. Quyền phán đoán vẫn ở cậu.</p>
+    <div class="whisper">Không ai ở phía bên kia tấm gương đang điều khiển cậu.</div>
+  </div>
+  <div class="progress" id="progress"><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+
+  <section class="card step" id="step1">
+    <div class="eyebrow">Bước 1 · Bắt đầu từ điều đang vướng</div>
+    <h2>Cậu đang băn khoăn điều gì?</h2>
+    <div class="step-intro">Cứ viết theo cách tự nhiên nhất. Cậu chưa cần biết phải hỏi Tarot thế nào — Gương sẽ giúp chuyển điều đang vướng thành một <b>mô thức nhìn</b> phù hợp.</div>
+    <textarea id="question" placeholder="Ví dụ: Tớ đang học Tarot rất hứng thú, nhưng chưa biết nó có giá trị gì thực sự với tớ."></textarea>
+    <div class="helper"><strong>Không cần viết câu hỏi “đúng”.</strong> Một điều còn mơ hồ cũng đủ để bắt đầu.</div>
+    <div class="sub" style="margin:18px 0 8px">Nếu muốn, cậu chọn hướng nhìn để Gương lọc nhanh hơn:</div>
+    <div class="chips" id="intentChips">
+      <span class="chip" data-i="perspective">mở góc nhìn</span><span class="chip" data-i="decision">ra quyết định</span><span class="chip" data-i="problem">hiểu vấn đề</span><span class="chip" data-i="journey">tìm hướng đi</span><span class="chip" data-i="relationship">hiểu một mối quan hệ</span><span class="chip" data-i="self">hiểu mình</span><span class="chip" data-i="change">hiểu sự thay đổi</span><span class="chip" data-i="time">nhìn theo chu kỳ / thời gian</span><span class="chip" data-i="needs">hiểu nhu cầu / động lực</span><span class="chip" data-i="whole">nhìn toàn cảnh</span>
+    </div>
+    <div class="actions"><button class="btn primary" onclick="analyzeQuestion()">Giúp tớ chọn mô thức nhìn →</button><button class="btn ghost" onclick="chooseTarotLabDirectly()">Tớ đã biết mình muốn dùng spread nào</button></div>
+    <div class="trustbar"><span class="trustpill"><b>Gương không chấm đúng/sai</b></span><span class="trustpill">Không cần tin Tarot mới dùng được</span><span class="trustpill">Quyền kết luận vẫn ở cậu</span></div>
+  </section>
+
+  <section class="card step hidden" id="step2">
+    <div class="eyebrow">Bước 2 · Chọn mô thức nhìn</div>
+    <h2>Không phải chọn “lá đúng” — chọn cách nhìn đúng câu hỏi</h2>
+    <div class="sub" id="analysisText"></div>
+    <div class="guide"><h3>Gương đang làm gì?</h3><p>Tớ sẽ đưa ra một vài <b>architecture</b> khác nhau. Mỗi architecture chia vấn đề thành những vị trí riêng, để cậu có một đường đi khi quan sát các lá bài.</p><p class="logic">Question → Frame → Random stimulus → Observation → Reflection → Choice</p><p>TarotLab cung cấp stimulus ngẫu nhiên. Gương giải thích cấu trúc. Cậu là người kiểm chứng ý nghĩa.</p></div>
+    <div class="choice-tabs" role="tablist" aria-label="Cách chọn spread">
+      <button class="choice-tab active" id="recommendTab" onclick="setChoiceMode('recommend')">Gương đề xuất</button>
+      <button class="choice-tab" id="manualTab" onclick="setChoiceMode('manual')">Tự chọn trong TarotLab</button>
+    </div>
+    <div class="filter-note" id="filterNote"></div>
+    <div id="manualChooser" class="hidden"></div>
+    <div class="frameworks" id="frameworks"></div>
+    <div id="spreadDetail"></div>
+    <div class="actions"><button class="btn ghost" onclick="go(1)">← Sửa câu hỏi</button><button class="btn ghost" id="backBatchBtn" onclick="backOptionList()" disabled>← Xem nhóm trước</button><button class="btn" id="refreshBtn" onclick="refreshOptions()">↻ Cho tớ lựa chọn khác</button></div>
+    <div class="note" id="refreshNote"></div>
+    <div class="custom-tools" id="customArea"></div>
+  </section>
+
+  <section class="card step hidden" id="step3">
+    <div class="eyebrow">Bước 3 · Học architecture rồi mới trải bài</div>
+    <div class="lesson-head"><div><h2 id="step3Title">Dùng spread trong TarotLab</h2><div class="sub" id="selectedDescription"></div></div><div id="confidenceBadge"></div></div>
+    <div class="guide" id="frameworkLesson"></div>
+    <div id="positions"></div>
+    <div class="section-label" id="customCopyLabel">Cấu trúc</div>
+    <div class="copybox" id="structureText"></div>
+    <div class="actions"><button class="btn ghost" onclick="go(2)">← Chọn lại cấu trúc</button><button class="btn" onclick="openTarotLabGuide()">Mở TarotLab →</button><button class="btn primary" onclick="markDoneAndPrompt()">Tớ đã trải bài → tạo prompt</button></div>
+    <div class="safe-note">Cậu có thể dừng ở bất kỳ bước nào. Gương chỉ cung cấp một cách nhìn để thử; cậu không cần ép mình tìm ra một “đáp án” từ những lá bài.</div>
+    <div class="note" id="tarotLabNote"></div>
+  </section>
+
+  <section class="card step hidden" id="step4">
+    <div class="eyebrow">Bước 4 · Đưa kết quả vào cuộc đối thoại</div>
+    <h2>Copy prompt sang GPT</h2>
+    <div class="sub">Gương đã đóng gói <b>câu hỏi + architecture + nguyên tắc đọc</b>. Cậu chỉ cần dán prompt này cùng ảnh kết quả TarotLab vào GPT.</div>
+    <div class="guide"><h3>GPT sẽ làm gì?</h3><p>GPT sẽ đọc toàn bộ trải bài theo architecture đã chọn, rồi cho cậu ba cách tiếp tục: tự phản tư, xem gợi ý ngay, hoặc xuất thành một báo cáo đầy đủ.</p><p class="logic">A · Phản tư &nbsp;→&nbsp; B · Gợi ý &nbsp;→&nbsp; C · Luận giải đầy đủ</p></div>
+    <div class="copybox" id="prompt"></div>
+    <div class="actions"><button class="btn ghost" onclick="go(3)">← Quay lại</button><button class="btn primary" onclick="copyPrompt()">Copy prompt</button><button class="btn ghost" onclick="startOver()">↺ Một phiên mới</button></div>
+    <div class="note"><b>Ba cách tiếp tục:</b> A · Cậu trả lời những câu phản tư mình thấy có gì đó → GPT đào sâu khi cần và tổng hợp dần. &nbsp; B · Gợi ý luôn cho tớ → GPT tự phân tích và đánh dấu giả thuyết. &nbsp; C · Xuất luận giải đầy đủ → GPT tổng hợp thành một báo cáo hoàn chỉnh và tạo file DOCX nếu môi trường hỗ trợ tạo file.</div>
+    <div class="safe-note">Nếu một diễn giải nghe không đúng với trải nghiệm của cậu, bỏ qua nó. Một cách đọc tốt phải giúp cậu nhìn rõ hơn, không khiến cậu phụ thuộc vào lá bài.</div>
+  </section>
+
+  <div class="footer">Gương Tarot · Question → Frame → Random stimulus → Observation → Reflection → Choice</div>
+</div>
+<script>
+/* TarotLab option inventory — reconstructed from the user's screenshots.
+   The names below are the exact English names visible in TarotLab. */
+const tarotLabSpreads=[
+ {id:'birthday',name:'Birthday Reading',cards:7,group:['time'],desc:'Seven messages for the year ahead (from your birthday)',framework:'Annual reflection / horizon scan'},
+ {id:'bridge',name:'Bridge',cards:7,group:['journey','change'],desc:'7-step journey from now to the goal',framework:'Goal journey / gap-closing roadmap'},
+ {id:'butterfly',name:'Butterfly',cards:8,group:['change'],desc:'Symmetrical 8 cards — change and transformation',framework:'Transformation / before–after symmetry'},
+ {id:'career',name:'Career Path',cards:4,group:['journey','decision','problem'],desc:'Exploring direction in career and work',framework:'Career direction / path exploration'},
+ {id:'celtic',name:'Celtic Cross',cards:10,group:['whole','perspective','problem'],desc:'10-card classic deep analysis',framework:'Multidimensional / contextual analysis'},
+ {id:'chakra',name:'Chakra',cards:7,group:['self'],desc:'Energy state of the seven chakras',framework:'Seven-domain symbolic self-reflection',symbolic:true},
+ {id:'crossroads',name:'Crossroads of Decision',cards:5,group:['decision'],desc:'Two paths + hidden factor + outcome',framework:'Decision + blind spot + consequence'},
+ {id:'finance',name:'Finance Reading',cards:5,group:['problem','journey'],desc:'5-card flow analysis of money and assets',framework:'Resource / flow analysis'},
+ {id:'fivecross',name:'Five-Card Cross',cards:5,group:['whole','perspective','problem'],desc:'Multifaceted analysis of a situation',framework:'Multiple forces / multifaceted view'},
+ {id:'elements',name:'Four Elements',cards:4,group:['whole','self'],desc:'The four energies — Fire, Water, Air, Earth',framework:'Four-domain symbolic lens',symbolic:true},
+ {id:'fullmoon',name:'Full Moon',cards:5,group:['change','time'],desc:'5 cards — completion, release, gratitude',framework:'Completion / release / integration'},
+ {id:'hexagram',name:'Hexagram',cards:7,group:['perspective','whole'],desc:'Star of David — six perspectives around a core — 7 cards',framework:'Six perspectives around one core'},
+ {id:'horseshoe',name:'Horseshoe',cards:5,group:['time','journey'],desc:'5-card arched timeline',framework:'Developmental timeline'},
+ {id:'lovecross',name:'Love Cross',cards:5,group:['relationship'],desc:'In-depth 5-card analysis of a romantic situation',framework:'Relationship forces / relational context'},
+ {id:'mandala',name:'Mandala',cards:9,group:['whole','self'],desc:'3×3 grid — overall harmony analysis',framework:'Holistic system / pattern map'},
+ {id:'maslow',name:'Maslow',cards:5,group:['needs','self'],desc:'5-tier pyramid of needs',framework:'Needs hierarchy / motivation lens'},
+ {id:'mirror',name:'Mirror',cards:6,group:['self','relationship','perspective'],desc:'Outer self vs. inner self (6 cards, vertical symmetry)',framework:'Inner–outer alignment'},
+ {id:'moonphases',name:'Moon Phases',cards:8,group:['time','change','journey'],desc:'8 phases — cycles of projects and relationships',framework:'Cycle / phase thinking'},
+ {id:'newyear',name:'New Year Goals',cards:7,group:['journey','time'],desc:'7-card mountain journey for the new year',framework:'Goal setting / development journey'},
+ {id:'one',name:'One Card',cards:1,group:['perspective','self','problem'],desc:'Quick single answer, daily card',framework:'Single-point focus'},
+ {id:'pastlife',name:'Past Life',cards:5,group:['self','time'],desc:'Karma and the soul’s flow — 5 cards',framework:'Esoteric narrative / karmic lens',symbolic:true},
+ {id:'pentagram',name:'Pentagram',cards:5,group:['whole','self'],desc:'Five elements in a star (Earth, Water, Fire, Air, Spirit)',framework:'Five-domain symbolic lens',symbolic:true},
+ {id:'problem',name:'Problem Solving',cards:9,group:['problem'],desc:'3×3 grid — cause, core, solution',framework:'Root-cause / core / intervention'},
+ {id:'pyramid',name:'Pyramid',cards:6,group:['journey','problem','self'],desc:'1-2-3 triangle, top → bottom unfolding',framework:'Layered unfolding / hierarchy'},
+ {id:'relationship',name:'Relationship Reading',cards:6,group:['relationship'],desc:'Six-card view of two-person dynamics',framework:'Relational system / two-person dynamics'},
+ {id:'sevenhorseshoe',name:'Seven Horseshoe',cards:7,group:['time','journey'],desc:'7-card detailed timeline',framework:'Detailed developmental timeline'},
+ {id:'shadow',name:'Shadow Work',cards:5,group:['self','perspective','change'],desc:'Five cards to face inner shadow',framework:'Blind-spot / avoided material exploration'},
+ {id:'star',name:'Star Spread',cards:7,group:['perspective','self','whole'],desc:'Center + 6 directions, for self-reflection',framework:'360° perspective around a core'},
+ {id:'three',name:'Three Cards',cards:3,group:['perspective','decision','problem','journey','relationship','self','change','time'],desc:'The most popular three-card layout',framework:'Flexible three-position sequence'},
+ {id:'tree',name:'Tree of Life',cards:10,group:['whole','self'],desc:'Kabbalah 10 sephirot',framework:'Kabbalistic symbolic system',symbolic:true},
+ {id:'triplegoddess',name:'Triple Goddess',cards:3,group:['self','change','time'],desc:'Three faces of the sacred feminine — Maiden, Mother, Crone — 3 cards',framework:'Three-stage symbolic life-cycle lens',symbolic:true},
+ {id:'twinflame',name:'Twin Flame',cards:7,group:['relationship','change'],desc:'Mirror of the soul — the deep structure of a karmic love — 7 cards',framework:'Esoteric relationship / karmic lens',symbolic:true},
+ {id:'two',name:'Two Cards',cards:2,group:['decision','perspective'],desc:'Either-or, comparing two options',framework:'Polarity / compare-and-contrast'},
+ {id:'vshape',name:'V-Shape Either-Or',cards:5,group:['decision'],desc:'Process and outcome of two paths in a V shape',framework:'Scenario comparison / two trajectories'},
+ {id:'weekly',name:'Weekly Reading',cards:7,group:['time'],desc:'7-day energy, Mon–Sun',framework:'Short-cycle time map'},
+ {id:'wheel',name:'Wheel of the Year',cards:8,group:['time','change'],desc:'Eight Sabbats tracing the year’s natural cycle — 8 cards',framework:'Annual cycle / seasonal rhythm',symbolic:true},
+ {id:'yearahead',name:'Year Ahead',cards:13,group:['time','journey'],desc:'12 months + yearly summary',framework:'Longitudinal year map'},
+ {id:'yesno',name:'Yes / No',cards:3,group:['decision'],desc:'Quick answer — yes / no / condition (3 cards)',framework:'Binary decision with condition'},
+ {id:'zodiac',name:'Zodiac',cards:12,group:['whole','self'],desc:'Analysis of the 12 houses (life domains)',framework:'Multi-domain life-area map',symbolic:true}
+];
+
+/* Gương's explanatory layer: what each TarotLab structure is doing as a thinking framework. */
+const frameworkMeta={
+ birthday:['Soi chiếu năm mới','Bản đồ theo các mốc của một năm; dùng để phản tư về chủ đề và nhịp phát triển theo thời gian.','Khi muốn nhìn một chặng năm như một hành trình phản tư.'],
+ bridge:['Thu hẹp khoảng cách','Từ hiện tại đi qua nhiều bước tới mục tiêu; trọng tâm là gap và các chuyển động trung gian.','Khi đã có đích đến và muốn nhìn các chặng đi tới.'],
+ butterfly:['Biến đổi đối xứng','Đặt các phần của một quá trình thay đổi trong quan hệ đối xứng để nhận ra sự chuyển hóa.','Khi câu hỏi xoay quanh thay đổi, chuyển mình hoặc tái cấu trúc.'],
+ career:['Định hướng con đường','Nhìn câu hỏi nghề nghiệp như bài toán về hướng đi và phát triển.','Khi câu hỏi gắn với công việc hoặc nghề nghiệp.'],
+ celtic:['Toàn cảnh đa chiều','Một vấn đề được nhìn qua nhiều lớp: bối cảnh, lực tác động, bên trong, bên ngoài và xu hướng.','Khi câu hỏi phức tạp và cần nhiều chiều nhìn.'],
+ chakra:['Bản đồ 7 miền biểu tượng','Chia trải nghiệm thành bảy miền theo hệ chakra; ở đây chỉ dùng như ngôn ngữ biểu tượng phản tư.','Khi muốn tự phản tư qua một hệ biểu tượng cụ thể.'],
+ crossroads:['Quyết định + điểm mù','Hai hướng đi cùng một yếu tố ẩn và hệ quả; giúp tìm điều chưa được tính đến.','Khi đang cân nhắc hai hướng quan trọng.'],
+ finance:['Dòng nguồn lực','Nhìn tiền/tài sản như một dòng chảy và các yếu tố tác động lên nó.','Khi câu hỏi thuộc domain tài chính và mục tiêu là phản tư.'],
+ fivecross:['Các lực giao nhau','Một vấn đề ở trung tâm được nhìn qua nhiều lực hoặc góc tác động cùng lúc.','Khi muốn phân tích đa yếu tố nhưng chưa cần 10 lá.'],
+ elements:['Bốn miền biểu tượng','Fire–Water–Air–Earth tạo một lăng kính bốn miền để phản tư.','Khi muốn một lăng kính biểu tượng đơn giản.'],
+ fullmoon:['Hoàn tất và buông','Tập trung vào điều đã hoàn thành, điều có thể thả xuống và điều cần tích hợp.','Khi đang ở cuối một chu kỳ.'],
+ hexagram:['360° quanh một lõi','Sáu hướng nhìn xoay quanh một trung tâm, tạo một bản đồ đa góc.','Khi muốn phá một góc nhìn duy nhất.'],
+ horseshoe:['Dòng phát triển','Một timeline cong để nhìn diễn tiến và chuyển dịch của vấn đề.','Khi muốn hiểu quá trình hình thành/phát triển.'],
+ lovecross:['Các lực trong quan hệ','Phân tích một quan hệ qua nhiều yếu tố tương tác.','Khi cần nhìn dynamics của một mối quan hệ.'],
+ mandala:['Bản đồ toàn thể','Lưới 3×3 tạo snapshot nhiều ô của cùng một hệ thống.','Khi muốn nhìn tổng thể và các pattern cùng lúc.'],
+ maslow:['Lăng kính nhu cầu','Đặt vấn đề trong các tầng nhu cầu và động lực.','Khi câu hỏi xoay quanh động lực, nhu cầu hoặc ưu tiên.'],
+ mirror:['Trong ↔ ngoài','Đặt self biểu hiện ra ngoài cạnh self bên trong để soi alignment/chênh lệch.','Khi muốn xem điều thể hiện có khớp với điều bên trong không.'],
+ moonphases:['Chu kỳ theo pha','Nhìn dự án/quan hệ như một chu kỳ gồm nhiều phase, thay vì đường thẳng.','Khi vấn đề có tính lặp, trưởng thành hoặc chuyển pha.'],
+ newyear:['Mục tiêu + hành trình','Một goal được nhìn như hành trình qua các chặng.','Khi muốn phản tư mục tiêu và quá trình thực hiện.'],
+ one:['Một điểm hội tụ','Một câu hỏi được thu về một điểm chú ý duy nhất.','Khi chỉ cần một góc nhìn ngắn và rõ.'],
+ pastlife:['Narrative huyền học','Một narrative về karma/soul flow; chỉ nên dùng như hệ biểu tượng để khám phá niềm tin.','Khi muốn nghiên cứu một lăng kính huyền học, không dùng như fact.'],
+ pentagram:['Năm miền biểu tượng','Earth–Water–Fire–Air–Spirit tạo một lăng kính năm miền.','Khi muốn một lăng kính biểu tượng cân bằng.'],
+ problem:['Nguyên nhân → lõi → can thiệp','Tách hiện tượng thành cause, core và điểm tác động.','Khi muốn mổ xẻ vấn đề và tìm nơi có thể can thiệp.'],
+ pyramid:['Từ lõi ra các lớp','Cấu trúc 1–2–3 mở dần, tạo một cách nhìn phân tầng.','Khi muốn khám phá một vấn đề theo các lớp.'],
+ relationship:['Hệ tương tác hai người','Nhìn hai cá nhân và dynamics hình thành giữa họ.','Khi câu hỏi nằm ở mối quan hệ.'],
+ sevenhorseshoe:['Timeline chi tiết','Nhiều điểm trên timeline để nhìn diễn tiến kỹ hơn.','Khi cần hành trình chi tiết hơn Horseshoe.'],
+ shadow:['Blind spot nội tâm','Đưa sự chú ý vào phần mình khó nhìn, né tránh hoặc chưa nhận diện.','Khi muốn khám phá self-blind-spots.'],
+ star:['Lõi + sáu hướng','Một trung tâm được bao quanh bởi sáu hướng nhìn, gần với 360° perspective.','Khi muốn self-reflection đa hướng.'],
+ three:['Chuỗi ba bước','Ba vị trí tạo một sequence; chính câu hỏi quyết định A/B/C là gì.','Khi cần architecture đơn giản và linh hoạt.'],
+ tree:['Hệ thống biểu tượng Kabbalah','10 vị trí theo Tree of Life; đây là một hệ huyền học riêng.','Khi muốn nghiên cứu symbolic/esoteric tradition.'],
+ triplegoddess:['Chu kỳ ba giai đoạn','Ba vị trí tạo một life-cycle symbolic lens.','Khi muốn phản tư sự trưởng thành/chuyển giai đoạn.'],
+ twinflame:['Quan hệ theo narrative định mệnh','Một framework esoteric về twin-flame/karmic relationship.','Chỉ nên dùng như exploration of belief, không như sự thật định mệnh.'],
+ two:['Hai cực','Đặt hai phía cạnh nhau để so sánh hoặc tạo đối thoại.','Khi câu hỏi có hai cực, lựa chọn hoặc góc nhìn.'],
+ vshape:['Hai trajectory','Từ cùng một điểm xuất phát, hai đường đi được nhìn qua process và outcome.','Khi muốn so sánh hai kịch bản.'],
+ weekly:['Bản đồ 7 ngày','Chia một tuần thành bảy điểm thời gian để phản tư.','Khi muốn một time-map ngắn hạn.'],
+ wheel:['Vòng chu kỳ năm','Nhìn năm như một vòng mùa/chu kỳ thay vì đường thẳng.','Khi muốn phản tư nhịp chu kỳ dài.'],
+ yearahead:['Bản đồ 12 tháng','Longitudinal map theo tháng rồi tổng hợp thành bức tranh năm.','Khi muốn nhìn cả năm theo từng giai đoạn.'],
+ yesno:['Có/không + điều kiện','Ép câu hỏi về dạng binary và một điều kiện đi kèm.','Chỉ dùng khi câu hỏi thật sự phù hợp với dạng binary.'],
+ zodiac:['Bản đồ 12 lĩnh vực','Chia đời sống thành nhiều domain để tạo một life-area scan.','Khi muốn nhìn rộng qua nhiều lĩnh vực đời sống.']
+};
+tarotLabSpreads.forEach(s=>{const m=frameworkMeta[s.id]||[s.framework,s.framework,s.desc];s.frameworkVi=m[0];s.structureVi=m[1];s.useVi=m[2]});
+
+
+/* Position-level knowledge base.
+   verified = captured from TarotLab's own Position Preset screens.
+   provisional = working knowledge only; NOT claimed to be TarotLab's exact preset.
+*/
+const positionData={
+ birthday:{confidence:'verified',presets:{'Birthday Message':[["Year's theme",'Core energy of the year'],['Growth point','The area that will grow most'],['Challenge','A trial to face'],['Relationships','Flow of personal relationships'],['Career','Direction of work and finances'],['Health','Body and mind health'],['Spiritual message','A word from the universe']]}},
+ bridge:{confidence:'verified',positions:[['Starting point','Where you stand now'],['First step','What to do right away'],['Challenge','Obstacles on the bridge'],['Turning point','The moment change happens'],['Support','Resources that will help'],['Final gate','The last test'],['Destination','Where you will arrive']]},
+ butterfly:{confidence:'verified',presets:{'Butterfly of Change':[['Current self','Present state'],['Self you want to be','Goal of transformation'],['Inner strength','Resources within'],['Outer strength','Support around you'],['Inner obstacle','Internal resistance'],['Outer obstacle','External barriers'],['Action','The first step to take'],['Result','How you will look after the change']]}},
+ chakra:{confidence:'verified',presets:{'Energy Check':[['Muladhara','Root: survival and stability'],['Svadhisthana','Sacral: desire and creation'],['Manipura','Solar plexus: will and self'],['Anahata','Heart: love and connection'],['Vishuddha','Throat: authentic expression'],['Ajna','Third eye: intuition'],['Sahasrara','Crown: spiritual awareness']]}},
+ career:{confidence:'verified',presets:{'Career Exploration':[['Current strength','Your strength right now'],['Obstacle','What blocks your career'],['Opportunity','Possibility approaching'],['Best path','The direction to take']], 'Job Change':[['Current spot','The core of your current job'],['Reason to leave','The essential reason for considering change'],['Next spot','The shape of the new place you are heading'],['Decision advice','A word needed for the decision']], 'Startup':[['Item','The essence and potential of the business item'],['Your readiness','Your capability and resources as founder'],['Market environment','The signal the market is sending'],['Execution advice','Advice on timing and strategy']], 'Exam / Pass':[['Preparation','How well you have prepared so far'],['Weakness / risk','A weakness to watch'],['Breakthrough','A decisive helping element'],['Result message','Where the exam result is heading']]}},
+ three:{confidence:'verified',presets:{
+  'Past–Present–Future':[['Past','The past that became the root of the present'],['Present','The current situation'],['Future','Where the flow is heading']],
+  'Situation–Action–Outcome':[['Situation','The situation you are in'],['Action','The action to take'],['Outcome','The expected result']],
+  'Body–Mind–Spirit':[['Body','Physical / material state'],['Mind','Emotional / psychological state'],['Spirit','Inner / essential state']],
+  'Parent–Self–Child':[['Parent','Parent (or older generation) — stance and influence'],['Self','Your place between two generations'],['Child','Child (or younger generation) — stance and message']],
+  'Strength–Weakness–Advice':[['Strength','The strength available in the situation'],['Weakness','The vulnerable or limiting point'],['Advice','The attitude or action to take']]
+ }},
+ two:{confidence:'verified',presets:{'At the Crossroads':[['Choice A','The flow if you choose A'],['Choice B','The flow if you choose B']], 'Pros & Cons':[['Pros','What you will gain'],['Cons','What you will lose or carry']]}},
+ fivecross:{confidence:'verified',presets:{
+  'Situation Analysis':[['Present','The central situation right now'],['Past','The past that shaped this situation'],['Future','The flow that will unfold'],['Cause','The hidden cause'],['Advice','The attitude to take']],
+  'Love Cross':[['Your feelings','The core emotion you feel'],['Source of attraction','What draws the two of you together'],['Relationship flow','Where the relationship is heading'],['Obstacle','The blockage in the relationship'],['Advice','What to do for the relationship']],
+  'Health Cross':[['Body','Current physical state'],['Mind','State of mind and thought'],['Emotion','Emotional flow'],['Environment','How surroundings affect your health'],['Balance','Advice for recovery and balance']]
+ }},
+ celtic:{confidence:'verified',presets:{
+  'Traditional Celtic Cross':[['Present situation','The core current situation'],['Challenge','What stands in the way'],['Distant past / foundation','Root cause'],['Recent past','Recent influences'],['Possible outcome','The future if things continue this way'],['Near future','What is coming soon'],['Your attitude','Your own perspective'],['External influence','Environment and others'],['Hopes and fears','Inner expectations and worries'],['Final outcome','The integrated conclusion']],
+  'Celtic Cross — Love':[['Relationship now','The core of the bond right now'],['Challenge','What blocks the bond'],['Roots','What brought you together'],['Recent past','Recent influence on the bond'],['Possible future','Future if it continues'],['Near future','Short-term change'],['My heart','Your true feelings'],['Their heart','Your perception/assumptions about the other person'],['Hopes and fears','Hopes and worries about the bond'],['Outcome','The relationship’s final form']],
+  'Celtic Cross — Career':[['Career now','The core of your career situation'],['Challenge','What blocks your path'],['Roots of career','The base you have built'],['Recent change','Recent influence on your career'],['Possible future','Future if it continues'],['Near opportunity','Short-term opportunity or challenge'],['Your capability','Strength and stance to bring'],['Market / environment','External market or organization'],['Hopes and fears','Hopes and worries about career'],['Outcome','The final position you will reach']]
+ }},
+ horseshoe:{confidence:'verified',presets:{'5-Step Timeline':[['Past','Past influence'],['Present','Current situation'],['Hidden factor','Forces not yet visible'],['Advice','Recommended direction'],['Outcome','Final result']], 'Five Stages of Recovery':[['Start','Where recovery began'],['Challenge','Challenges faced during recovery'],['Inner resource','Inner strength to draw on'],['Needed support','External help to receive'],['Stability','The stability you will reach after settling']]}},
+ crossroads:{confidence:'verified',presets:{'Choice Analysis':[['Core question','The essence of the decision'],['Path of A','Result of the first choice'],['Path of B','Result of the second choice'],['Hidden factor','An unseen influence'],['Final advice','What is most needed now']], 'Breakup Decision':[['Truth of the bond','The real shape of the bond now'],['If you continue','Flow if the bond is kept'],['If you end','Flow if the bond ends'],['Hidden feelings','Unspoken feelings to reflect on, not mind-reading'],['Inner answer','The core message for the decision']]}},
+ vshape:{confidence:'verified',positions:[['Core question','The essence of the crossroads'],['Process of A','What you go through if you choose A'],['Result of A','Where A leads'],['Process of B','What you go through if you choose B'],['Result of B','Where B leads']]},
+ problem:{confidence:'verified',positions:[['Past cause','Old contributing factor'],['Hidden cause','Unseen root'],['External cause','Influence from outside'],['Surface of the problem','How it appears'],['Essence of the problem','The most crucial core'],['My attitude','How you face the problem'],['Short-term fix','What you can do right away'],['Root solution','How to change from the root'],['After solving','How things will look afterwards']]},
+ finance:{confidence:'verified',presets:{
+  'Finance Analysis':[['Current finances','The reality of your finances now'],['Accumulated assets','The strength you already hold'],['Financial obstacle','What blocks the flow'],['Approaching opportunity','Possibility opening up'],['Financial advice','The attitude needed now']],
+  'Investment Decision':[['Nature of investment','The core character of this investment'],['Risk','The risk to watch'],['Obstacle','What may block execution'],['Opportunity','The possibility you can gain'],['Decision advice','The decision to make now']],
+  'Debt Recovery':[['Current burden','The reality of debt you carry now'],['Root','The underlying reason debt accumulated'],['Obstacle','What blocks recovery'],['Workable path','A real practical recovery path'],['After recovery','The stability you will reach after recovery']]
+ }},
+ elements:{confidence:'verified',positions:[['Fire','Passion, will, action'],['Water','Emotion, relationship, intuition'],['Earth','Matter, stability, practicality'],['Air','Thought, communication, perspective']]},
+ one:{confidence:'verified',presets:{"Today's Card":[['Today','The message given to you today']], 'Focus Point':[['Focus on','The core to give attention to now']], 'Yes / No':[['Answer','The direction of the answer to this question']], 'Spirit Guide':[['Guide message','The spiritual guidance for you now']]}},
+ pastlife:{confidence:'verified',presets:{'Past Life Karma':[['Past life identity','Who you were in a past life'],['Lesson then','The greatest lesson of that life'],['Gift carried','A soul gift that crossed into this life'],['Unresolved karma','A knot still waiting to be undone'],['Present relevance','What this current flow means now']]}},
+ pentagram:{confidence:'verified',presets:{'Five Elements':[['Spirit','Spiritual direction'],['Air','Thought and communication'],['Water','Emotion and intuition'],['Earth','Matter and stability'],['Fire','Passion and will']]}},
+ yearahead:{confidence:'verified',presets:{'Monthly + Summary':[['January','Flow of January'],['February','Flow of February'],['March','Flow of March'],['April','Flow of April'],['May','Flow of May'],['June','Flow of June'],['July','Flow of July'],['August','Flow of August'],['September','Flow of September'],['October','Flow of October'],['November','Flow of November'],['December','Flow of December'],['Yearly summary','The message of the year']], 'Monthly Growth + Year':[['January — Begin','The intent that opens the year'],['February — Root','The area to set roots'],['March — Sprout','The possibility that begins to surface'],['April — Act','What to put into action'],['May — Expand','The direction to widen'],['June — Review','A part to look back on'],['July — Depth','The area to dig into'],['August — Trial','A trial for growth'],['September — Integrate','A time to make experience your own'],['October — Harvest','The achievement that surfaces'],['November — Share','The lesson to share'],['December — Close','The posture to close the year'],['Essence of growth','The message of growth that runs through the year']]}} ,
+ fullmoon:{confidence:'verified',positions:[['Light (Achievement)','What you have accomplished'],['Shadow (Let go)','What to release'],['Gratitude','Whom or what to be thankful for'],['Message','A message from the moon'],['Next step','Where to head next']]},
+ hexagram:{confidence:'verified',positions:[['Core','The central energy of this matter'],['Mind','Where thought and awareness flow'],['Body','The state of physical reality'],['Soul','What stirs at the deepest level'],['Self','Your own perspective and stance'],['Other','The action of outside and others'],['Time','How it will reveal itself over time']]},
+ mandala:{confidence:'verified',positions:[['Past — outer','Past environment'],['Past — inner','Past psyche'],['Past — soul','Past spiritual state'],['Present — outer','Current environment'],['Present — inner','Current psyche'],['Present — soul','Current spiritual state'],['Future — outer','Future environment'],['Future — inner','Future psyche'],['Future — soul','Future spiritual state']]},
+ maslow:{confidence:'verified',positions:[['Physiological/Safety','Basic survival and security'],['Belonging/Love','Relationships and belonging'],['Esteem','Self-esteem and recognition'],['Self-actualization','Realizing potential'],['Transcendence','Greater meaning and contribution']]},
+ mirror:{confidence:'verified',positions:[['Outer: Self','How you appear to the world'],['Outer: Relationships','How you relate to others'],['Outer: Behavior','Visible behavior pattern'],['Inner: Self','The hidden true self'],['Inner: Emotion','Concealed emotion'],['Inner: Desire','What you truly want']]},
+ moonphases:{confidence:'verified',presets:{
+  'Cycle Reading':[['New moon','Seed — what is starting fresh'],['Crescent','Intent — the will held within'],['First quarter','Challenge — trial to face'],['Waxing gibbous','Decision — the choice to make'],['Full moon','Completion — fruit revealed'],['Waning gibbous','Gratitude — the gift received'],['Last quarter','Release — what to let go'],['Waning crescent','Rest — stillness for the next cycle']],
+  'Life Cycle':[['Birth','Starting point — seed of essence'],['Growth','The possibility unfolding'],['Challenge','The trial to face'],['Choice','A decision that splits the path'],['Achievement','The fruit completed'],['Sharing','Giving back what was received'],['Letting go','Emptying and releasing'],['Return','The quiet of returning to essence']]
+ }},
+ newyear:{confidence:'verified',positions:[['Let go','What to release from last year'],['Carry forward','The strength to keep from last year'],['Obstacle','Trials on the road'],["Year's goal",'The dream you meet at the summit'],['Your resources','Strengths that aid the journey'],['First step','What to do right now'],['Year-end you','Who you become as the year closes']]},
+ pyramid:{confidence:'verified',positions:[['Apex','Core message'],['Conscious','What is recognized'],['Unconscious','Hidden motivation'],['Past','The grounding experience'],['Present','Current reality'],['Future','Direction ahead']]},
+ lovecross:{confidence:'verified',presets:{'Love Cross':[['Your feelings','The core emotion you feel'],['Source of attraction','What draws the two of you together'],['Relationship flow','Where the relationship is heading'],['Obstacle','The blockage in the relationship'],['Advice','What to do for the relationship']]}},
+ relationship:{confidence:'verified',presets:{
+  'Romantic Relationship':[['You','Your feelings and attitude'],['The other','The other person’s feelings and attitude'],['Dynamic','The force that connects you both'],['Past of the relationship','The context that built up'],['Present of the relationship','The current state of the bond'],['Future of the relationship','Where it is heading']],
+  'Family Relationship':[['You','Your place in the family'],['The other','The other member’s stance'],['Family dynamic','The energy flowing within the family'],['Past','The roots and history of the relationship'],['Present','The current state'],['Path to harmony','The direction for recovery and growth']],
+  'Friendship':[['You','The heart you bring to the friendship'],['Friend','The heart your friend brings'],['Texture of friendship','The nature of your bond'],['Past','The time you have built'],['Present','The shape of friendship now'],['Future','Where the friendship will lead']],
+  'Workplace':[['You','Your position and attitude'],['The other','Their stance and intention'],['Texture of work','The rhythm of your collaboration'],['Friction','Where friction arises'],['Strength','Where collaboration flows well'],['Advice','Action that will improve the bond']]
+ }},
+ /* All position data below has been verified against TarotLab screenshots supplied in this project. */
+ sevenhorseshoe:{confidence:'verified',presets:{'Detailed Analysis':[['Past','Past influence'],['Present','Current situation'],['Hidden influence','Concealed factor'],['Obstacle','Obstacles to face'],['Surroundings','External influences'],['Advice','Recommended action'],['Outcome','Final conclusion']]}},
+ shadow:{confidence:'verified',presets:{'Shadow Inquiry':[['My shadow','The part you avoid'],['Origin','Where the shadow comes from'],['Impact','How it affects life now'],['Acceptance','What is needed to accept it'],['Integration','The path to becoming one with the shadow']], 'Inner Child':[['Inner child','The shape of the child within you now'],['Wound','The wound the child carries'],['Love it needs','The love the child did not receive'],['Healing act','The care you can give now'],['Whole self','You after embracing the child']]}},
+ star:{confidence:'verified',presets:{'Self-Reflection':[['Core','Your essence right now'],['Conscious','What you are aware of'],['Emotion','Your emotional state'],['Shadow','What you are turning away from'],['Unconscious','Hidden motives'],['Resources','Strengths given to you'],['Message','The message you need now']]}},
+ tree:{confidence:'verified',presets:{'Kabbalistic Tradition':[['Keter','Crown: spiritual source'],['Chokmah','Wisdom: creative force'],['Binah','Understanding: receptivity and structure'],['Chesed','Mercy: expansion and love'],['Geburah','Judgment: boundary and restraint'],['Tiferet','Beauty: the center of balance'],['Netzach','Victory: emotion and passion'],['Hod','Glory: reason and communication'],['Yesod','Foundation: unconscious and dreams'],['Malkuth','Kingdom: material reality']]}},
+ triplegoddess:{confidence:'verified',presets:{'Maiden – Mother – Crone':[['Maiden','Beginning, possibility, new light'],['Mother','Maturity, creation, abundance'],['Crone','Wisdom, release, completion']], 'Life Cycle':[['Beginning','What is just sprouting'],['Peak','What is in full bloom'],['Closing','What is being released']]}},
+ twinflame:{confidence:'verified',presets:{'Mirror of the Soul':[['My soul','The state of your soul within this bond'],['Their soul','The state of the other soul'],['Karmic knot','The thread that ties the two souls'],['Mirror effect','The shadow/light each shows the other'],['Present test','The trial you are passing through together'],['After integration','The unified form when both align'],["Soul's message",'The greatest teaching being given now']]}} ,
+ weekly:{confidence:'verified',presets:{'7-Day Energy':[['Mon','Monday energy'],['Tue','Tuesday energy'],['Wed','Wednesday energy'],['Thu','Thursday energy'],['Fri','Friday energy'],['Sat','Saturday energy'],['Sun','Sunday energy']]}},
+ wheel:{confidence:'verified',presets:{'Eight Sabbats':[['Imbolc (early Feb)',"Winter's end — the seed of new light"],['Ostara (spring eq.)','Balance and renewal — the strength to begin'],['Beltane (early May)','Vitality and union — desire in full bloom'],['Litha (summer sol.)','Peak of light — fullness'],['Lughnasadh (early Aug)','First harvest — the fruit of effort'],['Mabon (autumn eq.)','Balance and gratitude — gathering in'],['Samhain (late Oct)','The veil thins — meeting the ancestors'],['Yule (winter sol.)','In deepest darkness, the light reborn']]}},
+ yesno:{confidence:'verified',presets:{'Yes / No / Condition':[['Yes','The positive flow'],['No','The negative flow'],['Condition','The variable that decides the outcome']]}},
+ zodiac:{confidence:'verified',presets:{'12 Life Domains':[['1st House','Self, appearance, first impression'],['2nd House','Money, possessions, values'],['3rd House','Communication, siblings, movement'],['4th House','Home, roots, foundation'],['5th House','Romance, creativity, joy'],['6th House','Health, daily life, service'],['7th House','Relationships, partners'],['8th House','Transformation, legacy, deep union'],['9th House','Travel, philosophy, learning'],['10th House','Career, reputation'],['11th House','Friends, community, dreams'],['12th House','Unconscious, spirituality, solitude']]}}
+};
+
+function attachPositionData(){
+ tarotLabSpreads.forEach(s=>{
+   const d=positionData[s.id]; if(!d)return;
+   if(d.positions) s.positions=d.positions;
+   if(d.presets){
+     const keys=Object.keys(d.presets);
+     // TarotLab may expose multiple position presets. Keep them all without
+     // pretending we know which one the app will start with.
+     s.positionPresets=d.presets;
+     if(keys.length===1) s.positions=d.presets[keys[0]];
+     else s.positions=d.presets[keys[0]];
+   }
+   s.positionConfidence=d.confidence;
+ });
+}
+attachPositionData();
+
+const customFrames={
+ perspective:{id:'custom-perspective',name:'Mở góc nhìn',en:'CUSTOM FRAME',cards:3,group:['perspective'],framework:'Blind-spot / perspective shift',desc:'Một cấu trúc riêng nếu các spread có sẵn chưa diễn đạt đúng câu hỏi.',positions:[['Cái tớ đang nhìn','Góc nhìn hiện tại của tớ về vấn đề.'],['Cái tớ chưa nhìn','Một khía cạnh có thể đang nằm ngoài trường nhìn hiện tại.'],['Điều cần nhìn tiếp','Điều đáng chú ý khi đặt hai góc nhìn cạnh nhau.']]},
+ decision:{id:'custom-decision',name:'Quyết định sáng rõ',en:'CUSTOM FRAME',cards:5,group:['decision'],framework:'Decision + criteria + blind spot',desc:'Một cấu trúc riêng cho quyết định khi các spread có sẵn chưa vừa.',positions:[['Điều đang cần quyết định','Bối cảnh và câu hỏi thực tế.'],['Lựa chọn A','Điều A mở ra và đòi hỏi.'],['Lựa chọn B','Điều B mở ra và đòi hỏi.'],['Điều chưa được tính','Một biến số / giả định có thể đang bị bỏ sót.'],['Tiêu chí của tớ','Điều tớ thực sự cần dùng để tự quyết định.']]},
+ problem:{id:'custom-problem',name:'Giải phẫu vấn đề',en:'CUSTOM FRAME',cards:5,group:['problem'],framework:'Cause → core → intervention',desc:'Một cấu trúc riêng khi Problem Solving của TarotLab quá rộng.',positions:[['Hiện tượng','Điều đang thực sự xảy ra ở bề mặt.'],['Nguyên nhân có thể','Các yếu tố đang tạo ra hiện tượng.'],['Lõi vấn đề','Điểm cốt lõi đáng xử lý.'],['Điểm can thiệp','Nơi tớ có khả năng tác động.'],['Thử nghiệm tiếp theo','Một hành động nhỏ để kiểm chứng giả thuyết.']]},
+ journey:{id:'custom-journey',name:'Từ hiện tại tới hướng đi',en:'CUSTOM FRAME',cards:5,group:['journey'],framework:'Current state → gap → next move',desc:'Một cấu trúc riêng cho câu hỏi về hướng đi.',positions:[['Hiện tại','Tớ đang đứng ở đâu?'],['Điều đang kéo lại','Yếu tố tạo ma sát hoặc giữ tớ ở hiện trạng.'],['Khoảng trống','Điều còn thiếu giữa hiện tại và điều mong muốn.'],['Bước gần nhất','Một chuyển động có thể thực hiện.'],['Hướng để kiểm chứng','Điều cần quan sát sau bước đó.']]},
+ relationship:{id:'custom-relationship',name:'Khoảng giữa hai người',en:'CUSTOM FRAME',cards:5,group:['relationship'],framework:'Relational system + agency',desc:'Một cấu trúc riêng cho quan hệ, không đọc tâm trí người kia.',positions:[['Tớ','Điều tớ đang mang vào tương tác.'],['Phía kia','Điều có thể quan sát từ phía còn lại.'],['Giữa hai bên','Mô thức đang hình thành trong tương tác.'],['Phần tớ có thể ảnh hưởng','Điều thuộc phạm vi chủ động của tớ.'],['Điều cần đối thoại','Điều nên được làm rõ bằng giao tiếp thực.']]},
+ self:{id:'custom-self',name:'Gương trong–ngoài',en:'CUSTOM FRAME',cards:5,group:['self'],framework:'Inner–outer alignment',desc:'Một cấu trúc riêng để nhìn bản thân qua nhiều lớp.',positions:[['Điều đang thể hiện','Điều tớ đang làm, nói hoặc cho người khác thấy.'],['Điều bên trong','Trải nghiệm / nhu cầu / suy nghĩ đi cùng nó.'],['Điểm khớp','Điều đang nhất quán.'],['Điểm lệch','Điều có thể chưa được gọi tên.'],['Điều muốn sống rõ hơn','Phần tớ muốn đưa vào hành động.']]},
+ change:{id:'custom-change',name:'Bản đồ chuyển hóa',en:'CUSTOM FRAME',cards:5,group:['change'],framework:'Transition / integration',desc:'Một cấu trúc riêng để nhìn sự thay đổi.',positions:[['Trạng thái hiện tại','Điều đang có.'],['Điều đang rời đi','Điều đang mất dần vai trò.'],['Điểm chuyển','Nơi sự thay đổi đang diễn ra.'],['Điều đang hình thành','Khả năng mới đang xuất hiện.'],['Điều cần tích hợp','Điều cần mang theo sang trạng thái mới.']]},
+ time:{id:'custom-time',name:'Bản đồ chu kỳ',en:'CUSTOM FRAME',cards:5,group:['time'],framework:'Cycle / temporal perspective',desc:'Một cấu trúc riêng khi câu hỏi cần nhìn theo chu kỳ.',positions:[['Điểm đầu','Điều khởi tạo chu kỳ hiện tại.'],['Giai đoạn hiện tại','Tớ đang ở pha nào?'],['Điều đang chuyển','Cái gì đang thay đổi?'],['Điều cần hoàn tất','Điều cần được xử lý trước khi sang pha mới.'],['Điểm nhìn kế tiếp','Điều đáng quan sát ở chu kỳ tiếp theo.']]},
+ needs:{id:'custom-needs',name:'Bản đồ nhu cầu',en:'CUSTOM FRAME',cards:5,group:['needs'],framework:'Needs / motivation lens',desc:'Một cấu trúc riêng để nhìn động lực và nhu cầu.',positions:[['Nhu cầu nền','Điều cần được bảo đảm trước.'],['Nhu cầu đang nổi','Điều đang đòi hỏi sự chú ý.'],['Điều đang thúc đẩy','Nguồn động lực hiện tại.'],['Điều đang cản','Một nhu cầu / ràng buộc đang tạo ma sát.'],['Điều đáng cân bằng','Điều cần được đưa vào cân nhắc.']]},
+ whole:{id:'custom-whole',name:'Toàn cảnh 6 góc',en:'CUSTOM FRAME',cards:7,group:['whole'],framework:'360° / systems perspective',desc:'Một cấu trúc riêng để nhìn một vấn đề từ nhiều phía.',positions:[['Lõi vấn đề','Điểm trung tâm.'],['Góc 1','Một chiều quan trọng của vấn đề.'],['Góc 2','Một chiều khác cần nhìn.'],['Góc 3','Một lực / bối cảnh liên quan.'],['Góc 4','Một tác nhân / quan hệ liên quan.'],['Góc 5','Một điều đang bị bỏ sót.'],['Góc 6','Điều cần tổng hợp sau khi nhìn đủ các phía.']]}
+};
+
+const customAlternatives={
+ perspective:[
+  {id:'ca-p1',name:'Mở góc nhìn',cards:3,frameworkVi:'Known → Unknown → Next inquiry',desc:'Một architecture riêng để phá góc nhìn hiện tại.',logic:'Cái tớ đang nhìn → Cái tớ chưa nhìn → Điều cần nhìn tiếp',positions:[['Cái tớ đang nhìn','Góc nhìn hiện tại của tớ về vấn đề.'],['Cái tớ chưa nhìn','Một khía cạnh có thể đang nằm ngoài trường nhìn hiện tại.'],['Điều cần nhìn tiếp','Điều đáng chú ý khi đặt hai góc nhìn cạnh nhau.']]},
+  {id:'ca-p2',name:'Đổi khung nhìn',cards:4,frameworkVi:'Reframe → Counter-frame → Synthesis → Inquiry',desc:'Đặt khung hiện tại cạnh một khung đối trọng rồi tìm điểm giao.',logic:'Khung hiện tại → Khung đối trọng → Điều giao nhau → Câu hỏi mới',positions:[['Khung hiện tại','Cách tớ đang định nghĩa vấn đề.'],['Khung đối trọng','Một cách nhìn khác có thể mở rộng vấn đề.'],['Điểm giao','Điều trở nên rõ hơn khi đặt hai khung cạnh nhau.'],['Câu hỏi mới','Câu hỏi đáng mang theo sau khi đổi frame.']]}
+ ],
+ decision:[
+  {id:'ca-d1',name:'Quyết định sáng rõ',cards:5,frameworkVi:'Options → Blind spot → Criteria',desc:'Một architecture riêng cho quyết định.',logic:'Bối cảnh → A → B → Điều chưa tính → Tiêu chí quyết định',positions:[['Bối cảnh quyết định','Điều thực tế đang cần được quyết định.'],['Lựa chọn A','Điều A mở ra và đòi hỏi.'],['Lựa chọn B','Điều B mở ra và đòi hỏi.'],['Điều chưa được tính','Một biến số hoặc giả định có thể đang bị bỏ sót.'],['Tiêu chí của tớ','Điều tớ thực sự cần dùng để tự quyết định.']]},
+  {id:'ca-d2',name:'Nhìn trước khi chọn',cards:4,frameworkVi:'Criteria → Trade-off → Unknown → Choice',desc:'Đưa tiêu chí lên trước kết luận.',logic:'Tiêu chí → Đánh đổi → Điểm chưa biết → Điều tớ chọn',positions:[['Tiêu chí','Điều khiến một lựa chọn trở nên phù hợp với tớ.'],['Đánh đổi','Cái phải chấp nhận nếu chọn.'],['Điểm chưa biết','Điều cần kiểm chứng thêm.'],['Quyền lựa chọn','Điều tớ có thể quyết định ngay.']]}
+ ],
+ problem:[
+  {id:'ca-p1x',name:'Giải phẫu vấn đề',cards:5,frameworkVi:'Phenomenon → Cause → Core → Intervention → Experiment',desc:'Mổ xẻ vấn đề để tìm điểm tác động.',logic:'Hiện tượng → Nguyên nhân → Lõi → Điểm can thiệp → Thử nghiệm',positions:[['Hiện tượng','Điều đang xảy ra ở bề mặt.'],['Nguyên nhân có thể','Các yếu tố đang tạo ra hiện tượng.'],['Lõi vấn đề','Điểm cốt lõi đáng xử lý.'],['Điểm can thiệp','Nơi tớ có khả năng tác động.'],['Thử nghiệm tiếp theo','Một hành động nhỏ để kiểm chứng giả thuyết.']]},
+  {id:'ca-p2x',name:'Từ hiện tượng đến lõi',cards:4,frameworkVi:'Symptom → Pattern → Root → Question',desc:'Tách cái đang thấy khỏi cái có thể nằm phía dưới.',logic:'Hiện tượng → Pattern → Lõi → Câu hỏi cần đào tiếp',positions:[['Hiện tượng','Điều dễ nhìn thấy nhất.'],['Pattern','Mô thức có thể đang lặp lại.'],['Lõi','Điều đáng được xem xét sâu hơn.'],['Câu hỏi tiếp','Điều cần làm rõ trước khi hành động.']]}
+ ],
+ journey:[
+  {id:'ca-j1',name:'Từ hiện tại tới hướng đi',cards:5,frameworkVi:'Current → Friction → Gap → Move → Feedback',desc:'Một roadmap phản tư từ hiện trạng tới bước gần nhất.',logic:'Hiện tại → Ma sát → Khoảng trống → Bước gần nhất → Phản hồi',positions:[['Hiện tại','Tớ đang đứng ở đâu?'],['Điều đang kéo lại','Yếu tố tạo ma sát hoặc giữ tớ ở hiện trạng.'],['Khoảng trống','Điều còn thiếu giữa hiện tại và mong muốn.'],['Bước gần nhất','Một chuyển động có thể thực hiện.'],['Phản hồi cần quan sát','Điều cần xem lại sau bước đó.']]},
+  {id:'ca-j2',name:'Một bước rồi nhìn lại',cards:4,frameworkVi:'Direction → Small step → Signal → Adjust',desc:'Giảm hành trình lớn thành một vòng thử nghiệm nhỏ.',logic:'Hướng → Bước nhỏ → Tín hiệu → Điều chỉnh',positions:[['Hướng','Điều tớ đang muốn tiến về.'],['Bước nhỏ','Điều có thể thử ngay.'],['Tín hiệu','Điều cho biết bước đó có đáng tiếp tục.'],['Điều chỉnh','Điều cần thay đổi sau khi quan sát.']]}
+ ],
+ relationship:[
+  {id:'ca-r1',name:'Khoảng giữa hai người',cards:5,frameworkVi:'Self → Other → Interaction → Agency → Dialogue',desc:'Nhìn quan hệ như một hệ tương tác.',logic:'Tớ → Phía kia → Giữa hai bên → Phần tớ ảnh hưởng → Điều cần đối thoại',positions:[['Tớ','Điều tớ đang mang vào tương tác.'],['Phía kia','Điều có thể quan sát từ phía còn lại.'],['Giữa hai bên','Mô thức đang hình thành trong tương tác.'],['Phần tớ có thể ảnh hưởng','Điều thuộc phạm vi chủ động của tớ.'],['Điều cần đối thoại','Điều nên được làm rõ bằng giao tiếp thực.']]},
+  {id:'ca-r2',name:'Bản đồ tương tác',cards:4,frameworkVi:'Input → Interaction → Pattern → Agency',desc:'Tập trung vào thứ diễn ra giữa hai phía.',logic:'Điều mỗi bên mang vào → Tương tác → Pattern → Phần tớ có thể tác động',positions:[['Điều tớ mang vào','Thái độ, nhu cầu hoặc hành vi của tớ.'],['Điều đang xảy ra giữa hai bên','Cách hai phía tác động qua lại.'],['Pattern','Mô thức đang lặp hoặc hình thành.'],['Agency','Điều tớ có thể làm khác đi.']]}
+ ],
+ self:[
+  {id:'ca-s1',name:'Gương trong–ngoài',cards:5,frameworkVi:'Outer → Inner → Alignment → Gap → Embodiment',desc:'Soi độ khớp giữa điều thể hiện và điều bên trong.',logic:'Điều thể hiện → Điều bên trong → Điểm khớp → Điểm lệch → Điều muốn sống rõ hơn',positions:[['Điều đang thể hiện','Điều tớ đang làm, nói hoặc cho người khác thấy.'],['Điều bên trong','Trải nghiệm, nhu cầu hoặc suy nghĩ đi cùng nó.'],['Điểm khớp','Điều đang nhất quán.'],['Điểm lệch','Điều có thể chưa được gọi tên.'],['Điều muốn sống rõ hơn','Phần tớ muốn đưa vào hành động.']]},
+  {id:'ca-s2',name:'Gương nhiều lớp',cards:4,frameworkVi:'Surface → Need → Value → Action',desc:'Đi từ biểu hiện tới nhu cầu, giá trị và hành động.',logic:'Biểu hiện → Nhu cầu → Giá trị → Hành động',positions:[['Biểu hiện','Điều tớ đang thấy ở chính mình.'],['Nhu cầu','Điều có thể đang cần được đáp ứng.'],['Giá trị','Điều thật sự quan trọng với tớ.'],['Hành động','Một cách đưa giá trị vào đời sống.']]}
+ ],
+ change:[
+  {id:'ca-c1',name:'Bản đồ chuyển hóa',cards:5,frameworkVi:'Current → Leaving → Threshold → Emerging → Integrate',desc:'Nhìn thay đổi như một quá trình chuyển tiếp.',logic:'Hiện tại → Điều rời đi → Điểm chuyển → Điều hình thành → Tích hợp',positions:[['Trạng thái hiện tại','Điều đang có.'],['Điều đang rời đi','Điều đang mất dần vai trò.'],['Điểm chuyển','Nơi sự thay đổi đang diễn ra.'],['Điều đang hình thành','Khả năng mới đang xuất hiện.'],['Điều cần tích hợp','Điều cần mang theo sang trạng thái mới.']]},
+  {id:'ca-c2',name:'Qua ngưỡng',cards:4,frameworkVi:'Before → Threshold → After → Carry forward',desc:'Tập trung vào khoảnh khắc chuyển từ trạng thái này sang trạng thái khác.',logic:'Trước ngưỡng → Ngưỡng → Sau ngưỡng → Điều mang theo',positions:[['Trước ngưỡng','Điều đang tồn tại trước thay đổi.'],['Ngưỡng','Điểm cần vượt qua hoặc hiểu rõ.'],['Sau ngưỡng','Khả năng mở ra khi bước qua.'],['Điều mang theo','Điều đáng giữ lại.']]}
+ ],
+ time:[
+  {id:'ca-t1',name:'Bản đồ chu kỳ',cards:5,frameworkVi:'Start → Current phase → Shift → Complete → Next cycle',desc:'Nhìn vấn đề như một chu kỳ có các pha.',logic:'Điểm đầu → Pha hiện tại → Điều chuyển → Hoàn tất → Chu kỳ kế',positions:[['Điểm đầu','Điều khởi tạo chu kỳ hiện tại.'],['Giai đoạn hiện tại','Tớ đang ở pha nào?'],['Điều đang chuyển','Cái gì đang thay đổi?'],['Điều cần hoàn tất','Điều cần được xử lý trước khi sang pha mới.'],['Điểm nhìn kế tiếp','Điều đáng quan sát ở chu kỳ tiếp theo.']]},
+  {id:'ca-t2',name:'Nhịp phát triển',cards:4,frameworkVi:'Past signal → Present rhythm → Turning point → Next rhythm',desc:'Tập trung vào nhịp và điểm chuyển hơn là dự báo.',logic:'Tín hiệu trước đó → Nhịp hiện tại → Điểm chuyển → Nhịp kế tiếp',positions:[['Tín hiệu trước đó','Điều đã dẫn tới nhịp hiện tại.'],['Nhịp hiện tại','Mô thức đang diễn ra.'],['Điểm chuyển','Điều có thể làm nhịp thay đổi.'],['Nhịp kế tiếp','Điều đáng quan sát.']]}
+ ],
+ needs:[
+  {id:'ca-n1',name:'Bản đồ nhu cầu',cards:5,frameworkVi:'Foundation → Emerging → Driver → Friction → Balance',desc:'Nhìn động lực qua nhu cầu và các điểm căng.',logic:'Nhu cầu nền → Nhu cầu nổi → Động lực → Cản trở → Cân bằng',positions:[['Nhu cầu nền','Điều cần được bảo đảm trước.'],['Nhu cầu đang nổi','Điều đang đòi hỏi sự chú ý.'],['Điều đang thúc đẩy','Nguồn động lực hiện tại.'],['Điều đang cản','Một nhu cầu hoặc ràng buộc đang tạo ma sát.'],['Điều đáng cân bằng','Điều cần được đưa vào cân nhắc.']]},
+  {id:'ca-n2',name:'Động lực phía sau',cards:4,frameworkVi:'Want → Need → Fear/constraint → Choice',desc:'Phân biệt điều muốn với điều thực sự cần.',logic:'Điều muốn → Điều cần → Ràng buộc → Lựa chọn',positions:[['Điều tớ muốn','Điều đang kéo tớ về phía trước.'],['Điều tớ cần','Nhu cầu nền phía sau mong muốn.'],['Ràng buộc','Điều đang giới hạn lựa chọn.'],['Điều tớ chọn','Cách cân bằng các yếu tố.']]}
+ ],
+ whole:[
+  {id:'ca-w1',name:'Toàn cảnh 6 góc',cards:7,frameworkVi:'Core + six perspectives',desc:'Một architecture riêng để nhìn một vấn đề từ nhiều phía.',logic:'Lõi → Góc 1 → Góc 2 → Góc 3 → Góc 4 → Góc 5 → Tổng hợp',positions:[['Lõi vấn đề','Điểm trung tâm.'],['Góc 1','Một chiều quan trọng của vấn đề.'],['Góc 2','Một chiều khác cần nhìn.'],['Góc 3','Một lực hoặc bối cảnh liên quan.'],['Góc 4','Một tác nhân hoặc quan hệ liên quan.'],['Góc 5','Một điều đang bị bỏ sót.'],['Tổng hợp','Điều trở nên đáng chú ý sau khi nhìn đủ các phía.']]},
+  {id:'ca-w2',name:'Bản đồ hệ thống',cards:5,frameworkVi:'Core → Forces → Context → Feedback → Leverage',desc:'Nhìn vấn đề như một hệ thống có lực, bối cảnh và điểm đòn bẩy.',logic:'Lõi → Lực → Bối cảnh → Phản hồi → Điểm đòn bẩy',positions:[['Lõi','Điều hệ thống đang xoay quanh.'],['Lực tác động','Những gì đang đẩy/kéo hệ thống.'],['Bối cảnh','Điều kiện bao quanh.'],['Phản hồi','Điều đang củng cố hoặc thay đổi pattern.'],['Điểm đòn bẩy','Nơi thay đổi nhỏ có thể tạo khác biệt.']]}
+ ]
+};
+
+
+let state={step:1,question:'',intents:[],filter:'perspective',selected:null,visibleIds:[],batchIndex:0,history:[],customIndex:0,customHistory:[],customSelected:null,choiceMode:'recommend'};
+const intentLabels={perspective:'mở góc nhìn',decision:'ra quyết định',problem:'hiểu vấn đề',journey:'tìm hướng đi',relationship:'hiểu một mối quan hệ',self:'hiểu mình',change:'hiểu sự thay đổi',time:'nhìn theo chu kỳ / thời gian',needs:'hiểu nhu cầu / động lực',whole:'nhìn toàn cảnh'};
+const priority={perspective:['hexagram','star','fivecross','celtic','three','two','one'],decision:['crossroads','vshape','two','yesno','three','celtic'],problem:['problem','fivecross','celtic','pyramid','three'],journey:['bridge','career','newyear','sevenhorseshoe','horseshoe','moonphases','three'],relationship:['relationship','lovecross','mirror','two','three'],self:['mirror','shadow','maslow','mandala','star','one','three'],change:['butterfly','moonphases','fullmoon','bridge','pyramid','sevenhorseshoe','three'],time:['yearahead','wheel','moonphases','weekly','birthday','sevenhorseshoe','horseshoe','fullmoon'],needs:['maslow','mirror','mandala','star','one'],whole:['celtic','mandala','hexagram','star','fivecross','zodiac','three']};
+function go(n){state.step=n;document.querySelectorAll('.step').forEach(x=>x.classList.add('hidden'));document.getElementById('step'+n).classList.remove('hidden');document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('on',i<n));window.scrollTo({top:0,behavior:'smooth'})}
+document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.remove('sel'));c.classList.add('sel');state.intents=[c.dataset.i]});
+function inferIntent(q){let t=q.toLowerCase();if(/chọn|quyết định|nên|hay|giữa|lựa chọn|option/.test(t))return'decision';if(/vì sao|tại sao|vấn đề|rối|bế tắc|nguyên nhân|khó khăn/.test(t))return'problem';if(/hướng|đi đâu|tiếp theo|con đường|mục tiêu|muốn đạt/.test(t))return'journey';if(/người|quan hệ|mối quan hệ|đồng nghiệp|gia đình|bạn/.test(t))return'relationship';if(/thay đổi|chuyển|bước ngoặt|mới|rời/.test(t))return'change';if(/chu kỳ|thời gian|năm nay|tháng|tuần|sắp tới/.test(t))return'time';if(/nhu cầu|động lực|được gì|cần gì|thiếu gì/.test(t))return'needs';if(/toàn cảnh|mọi mặt|tổng thể|hệ thống/.test(t))return'whole';if(/bản thân|tớ là|mình|bên trong|giá trị|ý nghĩa/.test(t))return'self';return'perspective'}
+function analyzeQuestion(){let q=document.getElementById('question').value.trim();if(!q){document.getElementById('question').focus();document.getElementById('question').setCustomValidity('Cứ viết một điều đang vướng là được.');document.getElementById('question').reportValidity();return}document.getElementById('question').setCustomValidity('');state.question=q;let chosen=state.intents[0]||inferIntent(q);state.filter=chosen;state.batchIndex=0;state.history=[];state.customIndex=0;state.customHistory=[];state.choiceMode='recommend';renderFrameworks();setChoiceMode('recommend');go(2)}
+function setChoiceMode(mode){
+ state.choiceMode=mode;
+ document.getElementById('recommendTab').classList.toggle('active',mode==='recommend');
+ document.getElementById('manualTab').classList.toggle('active',mode==='manual');
+ document.getElementById('frameworks').classList.toggle('hidden',mode!=='recommend');
+ document.getElementById('customArea').classList.toggle('hidden',mode!=='recommend');
+ document.getElementById('manualChooser').classList.toggle('hidden',mode!=='manual');
+ if(mode==='manual') renderManualChooser(); else {renderFrameworks();}
+}
+function chooseTarotLabDirectly(){
+ state.choiceMode='manual'; state.question=document.getElementById('question').value.trim() || state.question;
+ if(!state.question){document.getElementById('question').focus();return;}
+ go(2); setChoiceMode('manual');
+}
+function renderManualChooser(){
+ const el=document.getElementById('manualChooser');
+ const q=state.manualQuery||'';
+ const list=tarotLabSpreads.filter(s=>s.name.toLowerCase().includes(q.toLowerCase())||s.framework.toLowerCase().includes(q.toLowerCase())||s.desc.toLowerCase().includes(q.toLowerCase()));
+ el.innerHTML=`<div class="guide"><h3>Cậu đã biết mình muốn dùng spread nào?</h3><p>Được chứ. Gương sẽ không cố đổi lựa chọn của cậu. Hãy chọn trực tiếp một spread trong TarotLab; sau đó Gương vẫn giải thích architecture và position để cậu hiểu mình đang nhìn vấn đề bằng mô thức nào.</p></div><div class="manual-head"><input class="manual-search" id="manualSearch" placeholder="Tìm tên spread hoặc cách nhìn…" value="${escapeHtml(q)}"><span class="meta">${list.length} / ${tarotLabSpreads.length} spread</span></div><div class="manual-grid">${list.map(s=>`<div class="manual-item ${state.selected&&state.selected.id===s.id?'sel':''}" onclick="selectManualSpread('${s.id}')"><b>${escapeHtml(s.name)}</b><div class="meta">${s.cards} cards · ${escapeHtml(s.frameworkVi||s.framework)}</div><div class="meta">${escapeHtml(s.desc)}</div></div>`).join('')}</div>`;
+ const input=document.getElementById('manualSearch'); if(input) input.oninput=e=>{state.manualQuery=e.target.value;renderManualChooser()};
+}
+function selectManualSpread(id){
+ const s=tarotLabSpreads.find(x=>x.id===id); if(!s)return; state.selected=s; showSpreadDetail(s);
+}
+
+function getCandidates(){
+ let ids=priority[state.filter]||priority.perspective;
+ return ids.map(id=>tarotLabSpreads.find(s=>s.id===id)).filter(Boolean);
+}
+function getBatches(){
+ const all=getCandidates(); const size=3; const batches=[];
+ for(let i=0;i<all.length;i+=size) batches.push(all.slice(i,i+size));
+ return batches;
+}
+function renderFrameworks(){
+ const batches=getBatches();
+ if(!batches.length){document.getElementById('frameworks').innerHTML='<div class="note">Chưa có spread phù hợp với filter này.</div>';return;}
+ const maxIndex=batches.length-1;
+ state.batchIndex=Math.max(0,Math.min(state.batchIndex,maxIndex));
+ const picks=batches[state.batchIndex]; state.visibleIds=picks.map(x=>x.id); state.selected=picks[0];
+ const label=intentLabels[state.filter];
+ document.getElementById('analysisText').innerHTML=`Cậu đang muốn <b class="gold">${label}</b>. Tớ đã lọc những architecture phù hợp nhất với hướng đó. Không có lựa chọn nào là “đáp án đúng”; hãy chọn cấu trúc khiến cậu thấy câu hỏi của mình được đặt vào một khung sáng rõ hơn.`;
+ document.getElementById('filterNote').textContent=`Filter: ${label} · ${allCountForFilter()} lựa chọn liên quan · đang xem ${state.batchIndex+1}/${batches.length}`;
+ document.getElementById('spreadDetail').innerHTML='';
+ document.getElementById('frameworks').innerHTML=picks.map((s,i)=>`<div class="fw ${i===0?'sel':''}" data-id="${s.id}" onclick="selectFw('${s.id}')"><span class="fit">${i===0?'gợi ý':''}</span><b>${s.name}</b><div class="en">${s.cards} cards</div><div class="meta">Thinking framework · ${s.frameworkVi||s.framework}</div><p><b>Cấu trúc:</b> ${s.structureVi||s.desc}</p><p><b>Dùng khi:</b> ${s.useVi||s.desc}</p>${s.symbolic?'<div class="meta">✦ hệ biểu tượng / huyền học · Gương dùng như ngôn ngữ phản tư</div>':''}<div class="meta" style="margin-top:10px;color:var(--gold)">Nhấn để xem framework →</div></div>`).join('');
+ const btn=document.getElementById('refreshBtn'); btn.disabled=state.batchIndex>=maxIndex; btn.textContent=state.batchIndex>=maxIndex?'✓ Đã xem hết options phù hợp':'↻ Cho tớ lựa chọn khác';
+ document.getElementById('refreshNote').textContent=state.batchIndex>=maxIndex?'Không còn spread TarotLab nào trong filter này mà Gương thấy reasonable. Cậu có thể chọn một custom framework bên dưới.':'Mỗi lần đổi, Gương đưa một nhóm hoàn toàn mới; không lặp lại nhóm đã xem. Cậu vẫn có thể quay lại nhóm trước.';
+ const backBtn=document.getElementById('backBatchBtn'); backBtn.disabled=state.history.length===0;
+ renderCustomSuggestion();
+}
+function allCountForFilter(){return getCandidates().length}
+function selectFw(id){state.selected=tarotLabSpreads.find(s=>s.id===id);document.querySelectorAll('#frameworks .fw').forEach(x=>x.classList.toggle('sel',x.dataset.id===id));showSpreadDetail(state.selected)}
+function positionExplanation(s,p,i,presetName){
+ const key=s.id+'|'+(presetName||'')+'|'+p[0];
+ const exact={
+  'mirror||Outer: Self':'Đây là lớp “nhìn từ bên ngoài”: trước tiên quan sát hình ảnh và cách cậu đang xuất hiện trong thế giới, trước khi đi vào điều bên trong.',
+  'mirror||Outer: Relationships':'Đặt sự chú ý vào cách cậu đang tham gia các mối quan hệ. Nó giúp tách “tớ là ai” khỏi “tớ đang tương tác thế nào”.',
+  'mirror||Outer: Behavior':'Đưa hành vi quan sát được vào khung. Đây là cầu nối giữa cách cậu xuất hiện và điều có thể đang diễn ra bên trong.',
+  'mirror||Inner: Self':'Chuyển gương từ lớp biểu hiện sang lớp bên trong: cách cậu đang hiểu chính mình hoặc phần bản thân chưa được thể hiện ra ngoài.',
+  'mirror||Inner: Emotion':'Mời cậu nhìn vào cảm xúc có thể chưa được biểu đạt. Đây là chất liệu để kiểm chứng bằng trải nghiệm của cậu, không phải kết luận tâm lý.',
+  'mirror||Inner: Desire':'Đặt câu hỏi về điều cậu thực sự muốn, qua đó so sánh mong muốn bên trong với cách cậu đang sống ở lớp ngoài.',
+  'bridge||Starting point':'Đặt mốc xuất phát. Muốn đi tới đâu thì trước hết phải biết mình đang đứng ở đâu.',
+  'bridge||First step':'Thu nhỏ mục tiêu thành chuyển động gần nhất. Framework chuyển từ “đích” sang “hành động có thể làm ngay”.',
+  'bridge||Challenge':'Đưa lực cản vào bản đồ để hành trình không trở thành một đường thẳng tưởng tượng.',
+  'bridge||Turning point':'Tìm điểm mà cách vận hành có thể thay đổi. Đây là vị trí của bước ngoặt, không phải lời tiên đoán.',
+  'bridge||Support':'Nhìn vào nguồn lực sẵn có hoặc có thể huy động. Nó làm framework cân bằng giữa khó khăn và khả năng.',
+  'bridge||Final gate':'Nhận diện bài kiểm tra cuối trước khi chạm đích — điều cần được xử lý hoặc học qua.',
+  'bridge||Destination':'Đặt hình ảnh về nơi hành trình đang hướng tới để có một tiêu điểm cho việc quan sát và điều chỉnh.',
+  'crossroads|Choice Analysis|Core question':'Thu gọn quyết định về câu hỏi cốt lõi. Một quyết định rõ thường bắt đầu bằng việc biết chính xác mình đang quyết định điều gì.',
+  'crossroads|Choice Analysis|Path of A':'Cho phép cậu hình dung logic và hệ quả của phương án A như một kịch bản để suy xét.',
+  'crossroads|Choice Analysis|Path of B':'Đặt phương án B vào cùng một khung để có thể so sánh thay vì chỉ cảm nhận từng phương án riêng lẻ.',
+  'crossroads|Choice Analysis|Hidden factor':'Tạo một khoảng trống có chủ đích cho biến số chưa được tính đến — một cách chống “đóng khung quá sớm”.',
+  'crossroads|Choice Analysis|Final advice':'Kéo toàn bộ thông tin về một điểm cần cân nhắc. Đây là lời mời tự quyết, không phải mệnh lệnh từ lá bài.',
+  'vshape||Core question':'Xác định điểm xuất phát chung trước khi tách thành hai nhánh lựa chọn.',
+  'vshape||Process of A':'Nhìn vào trải nghiệm và cái giá của A trên đường đi, không chỉ nhìn kết quả cuối.',
+  'vshape||Result of A':'Cho A một điểm đến để so sánh với nhánh B.',
+  'vshape||Process of B':'Nhìn vào quá trình của B để so sánh công bằng với quá trình của A.',
+  'vshape||Result of B':'Đặt kết quả của B cạnh A, giúp quyết định dựa trên cả đường đi lẫn nơi đến.',
+  'problem||Past cause':'Tìm những yếu tố từ trước đã góp phần tạo hiện trạng; nó giúp tránh nhìn vấn đề như một sự kiện xuất hiện từ hư không.',
+  'problem||Hidden cause':'Dành chỗ cho nguyên nhân chưa lộ diện. Đây là giả thuyết cần kiểm chứng, không phải sự thật được Tarot xác nhận.',
+  'problem||External cause':'Mở khung ra ngoài cá nhân để nhìn bối cảnh và lực tác động từ môi trường.',
+  'problem||Surface of the problem':'Mô tả vấn đề ở lớp dễ quan sát nhất trước khi đào sâu.',
+  'problem||Essence of the problem':'Tìm điểm cốt lõi cần phân biệt với triệu chứng hoặc biểu hiện.',
+  'problem||My attitude':'Đưa agency của cậu trở lại architecture: cậu đang đứng ở đâu trước vấn đề này?',
+  'problem||Short-term fix':'Tìm can thiệp gần nhất để tạo chuyển động hoặc kiểm chứng.',
+  'problem||Root solution':'Mở rộng từ xử lý trước mắt sang thay đổi ở tầng nguyên nhân.',
+  'problem||After solving':'Cho phép nhìn lại hệ quả của việc giải quyết để tránh chỉ chăm chăm vào “xong việc”.',
+  'pyramid||Apex':'Bắt đầu từ đỉnh để xác định câu hỏi cốt lõi mà toàn bộ cấu trúc đang hướng tới.',
+  'pyramid||Conscious':'Đặt những gì cậu đã nhận biết lên bàn trước khi đi xuống các lớp ít rõ hơn.',
+  'pyramid||Unconscious':'Mở một vùng giả thuyết về động lực ẩn. Cần đối chiếu với trải nghiệm thực tế của cậu.',
+  'pyramid||Past':'Đặt nền quá khứ vào cấu trúc để hiểu hiện tại được hình thành trên nền nào.',
+  'pyramid||Present':'Neo toàn bộ diễn giải vào thực tại hiện tại.',
+  'pyramid||Future':'Dùng hướng đi phía trước như một không gian suy xét, không phải lời khẳng định về tương lai.',
+  'maslow||Physiological/Safety':'Bắt đầu từ nền tảng: những điều kiện cơ bản cần đủ ổn để các nhu cầu phía trên có chỗ phát triển.',
+  'maslow||Belonging/Love':'Nhìn nhu cầu kết nối và cảm giác thuộc về trong bức tranh động lực.',
+  'maslow||Esteem':'Xem nhu cầu về giá trị bản thân, năng lực và sự ghi nhận đang đóng vai trò thế nào.',
+  'maslow||Self-actualization':'Đặt câu hỏi về khả năng phát triển và sống gần với tiềm năng của mình.',
+  'maslow||Transcendence':'Mở rộng từ “tớ” sang ý nghĩa, đóng góp hoặc điều lớn hơn bản thân.',
+  'fullmoon||Light (Achievement)':'Bắt đầu bằng điều đã thành tựu để nhìn thấy phần tiến bộ thay vì chỉ tập trung vào phần thiếu.',
+  'fullmoon||Shadow (Let go)':'Tạo một vị trí cho việc buông bớt điều đã hoàn thành vai trò hoặc không còn cần giữ.',
+  'fullmoon||Gratitude':'Đưa sự biết ơn vào quá trình tổng kết, giúp nhìn cả nguồn lực và điều đã nâng đỡ mình.',
+  'fullmoon||Message':'Một khoảng trống để cậu tự quan sát điều nổi bật nhất sau quá trình hoàn tất — không cần coi đó là thông điệp siêu nhiên.',
+  'fullmoon||Next step':'Khép chu kỳ bằng một hướng chuyển động tiếp theo, để reflection có thể nối sang hành động.',
+  'newyear||Let go':'Xác định phần của chu kỳ cũ cần được đặt xuống để tạo không gian cho chu kỳ mới.',
+  'newyear||Carry forward':'Giữ lại những nguồn lực đã chứng minh được giá trị trong chu kỳ trước.',
+  'newyear||Obstacle':'Đưa khó khăn vào bản đồ ngay từ đầu để mục tiêu có tính thực tế.',
+  "newyear||Year's goal":'Tạo một điểm đến đủ rõ để các bước phía dưới có hướng quy tụ.',
+  'newyear||Your resources':'Nhìn vào năng lực, người hỗ trợ hoặc điều kiện có thể giúp hành trình.',
+  'newyear||First step':'Biến mục tiêu năm thành một chuyển động gần và cụ thể.',
+  'newyear||Year-end you':'Đưa sự chú ý từ “đạt gì” sang “trở thành ai / hình thành năng lực gì” sau hành trình.',
+  'relationship|Romantic Relationship|You':'Bắt đầu từ phần thuộc quyền quan sát trực tiếp nhất: cảm xúc và thái độ của chính cậu.',
+  'relationship|Romantic Relationship|The other':'Tạo một ô để xem cách cậu đang hình dung phía kia. Đây là góc nhìn của cậu, không phải đọc tâm trí người khác.',
+  'relationship|Romantic Relationship|Dynamic':'Nhìn vào thứ đang diễn ra giữa hai người — mối quan hệ như một hệ tương tác.',
+  'relationship|Romantic Relationship|Past of the relationship':'Đưa lịch sử vào khung để hiểu hiện tại được hình thành thế nào.',
+  'relationship|Romantic Relationship|Present of the relationship':'Neo diễn giải vào trạng thái hiện tại của mối quan hệ.',
+  'relationship|Romantic Relationship|Future of the relationship':'Dùng hướng phát triển như một giả thuyết để suy xét, không phải định mệnh.',
+  'relationship|Family Relationship|You':'Xác định vị trí và vai trò của cậu trong hệ gia đình.',
+  'relationship|Family Relationship|The other':'Nhìn stance của thành viên kia từ những gì cậu quan sát được, không khẳng định nội tâm của họ.',
+  'relationship|Family Relationship|Family dynamic':'Chuyển từ cá nhân sang mô thức tương tác của cả hệ.',
+  'relationship|Family Relationship|Past':'Nhìn nền lịch sử tạo nên cách quan hệ đang vận hành.',
+  'relationship|Family Relationship|Present':'Neo vào trạng thái hiện tại trước khi nghĩ về hướng thay đổi.',
+  'relationship|Family Relationship|Path to harmony':'Tìm hướng cải thiện khả dĩ trong phạm vi cậu có thể tham gia.',
+  'relationship|Friendship|You':'Bắt đầu từ điều cậu thực sự mang vào tình bạn.',
+  'relationship|Friendship|Friend':'Tạo góc nhìn về người bạn dựa trên cách cậu quan sát, không biến nó thành đọc tâm trí.',
+  'relationship|Friendship|Texture of friendship':'Mô tả chất lượng và kiểu tương tác của mối quan hệ.',
+  'relationship|Friendship|Past':'Nhìn phần lịch sử đã tạo nên tình bạn hiện tại.',
+  'relationship|Friendship|Present':'Xem hình dạng của tình bạn ở thời điểm này.',
+  'relationship|Friendship|Future':'Mở một giả thuyết về hướng phát triển để cậu kiểm chứng bằng thực tế.',
+  'relationship|Workplace|You':'Xác định vị trí và thái độ của cậu trong tương tác công việc.',
+  'relationship|Workplace|The other':'Nhìn stance và ý định mà cậu đang quan sát/giả định ở phía kia; cần kiểm chứng bằng giao tiếp thực.',
+  'relationship|Workplace|Texture of work':'Nhìn nhịp hợp tác thay vì quy mọi thứ về một cá nhân.',
+  'relationship|Workplace|Friction':'Đưa điểm ma sát ra ánh sáng để biết cần xử lý ở đâu.',
+  'relationship|Workplace|Strength':'Nhận diện phần đang vận hành tốt để có thể tận dụng.',
+  'relationship|Workplace|Advice':'Kết thúc bằng phần hành động thuộc phạm vi của cậu.',
+  'three|Past–Present–Future|Past':'Tạo mốc nền để thấy hiện tại không tách rời lịch sử.',
+  'three|Past–Present–Future|Present':'Neo câu chuyện vào điều đang thực sự diễn ra lúc này.',
+  'three|Past–Present–Future|Future':'Nhìn hướng dòng chảy như một giả thuyết, rồi đối chiếu với thực tế.',
+  'three|Situation–Action–Outcome|Situation':'Xác định hiện trạng trước khi nhảy sang lời khuyên.',
+  'three|Situation–Action–Outcome|Action':'Chuyển từ nhận diện sang phần cậu có thể làm.',
+  'three|Situation–Action–Outcome|Outcome':'Nhìn hệ quả có thể có của hướng hành động để cân nhắc.',
+  'three|Body–Mind–Spirit|Body':'Neo reflection vào trạng thái thể chất và điều kiện vật chất.',
+  'three|Body–Mind–Spirit|Mind':'Nhìn lớp cảm xúc và suy nghĩ đang ảnh hưởng trải nghiệm.',
+  'three|Body–Mind–Spirit|Spirit':'Mở một lớp phản tư về điều cậu thấy có ý nghĩa hoặc cốt lõi; không cần hiểu theo nghĩa siêu nhiên.',
+  'three|Parent–Self–Child|Parent':'Nhìn ảnh hưởng và stance từ thế hệ lớn hơn.',
+  'three|Parent–Self–Child|Self':'Đặt chính cậu ở giữa hệ, nơi hai chiều ảnh hưởng gặp nhau.',
+  'three|Parent–Self–Child|Child':'Nhìn chiều ảnh hưởng từ thế hệ trẻ hơn và vị trí của cậu trong dòng liên thế hệ.',
+  'two|At the Crossroads|Choice A':'Đưa phương án A vào một ô riêng để quan sát nó như một nhánh khả dĩ.',
+  'two|At the Crossroads|Choice B':'Đưa phương án B vào cùng architecture để so sánh trực tiếp.',
+  'two|Pros & Cons|Pros':'Làm rõ giá trị hoặc lợi ích mà lựa chọn có thể mang lại.',
+  'two|Pros & Cons|Cons':'Làm rõ cái giá, giới hạn hoặc điều cậu phải mang theo.',
+  'finance||Current finances':'Neo reflection vào thực trạng nguồn lực hiện tại trước khi nghĩ về cơ hội.',
+  'finance||Accumulated assets':'Nhìn vào những gì đã tích lũy được — tiền, tài sản, kỹ năng hoặc nguồn lực liên quan.',
+  'finance||Financial obstacle':'Xác định lực cản đang làm dòng nguồn lực khó vận hành.',
+  'finance||Approaching opportunity':'Mở góc nhìn về khả năng đang xuất hiện, rồi kiểm chứng bằng dữ liệu thực tế.',
+  'finance||Financial advice':'Kết thúc bằng thái độ hoặc hành động mà cậu có thể cân nhắc.',
+  'elements||Fire':'Dùng lăng kính Fire để hỏi về động lực, ý chí và hành động.',
+  'elements||Water':'Dùng lăng kính Water để hỏi về cảm xúc, kết nối và khả năng tiếp nhận.',
+  'elements||Earth':'Dùng lăng kính Earth để hỏi về tính thực tế, ổn định và điều kiện vật chất.',
+  'elements||Air':'Dùng lăng kính Air để hỏi về suy nghĩ, giao tiếp và góc nhìn.',
+  'hexagram||Core':'Đặt câu hỏi trung tâm ở giữa để mọi góc nhìn còn lại quy tụ về một vấn đề.',
+  'hexagram||Mind':'Nhìn cách suy nghĩ và nhận thức đang định hình vấn đề.',
+  'hexagram||Body':'Neo vấn đề vào thực tại và điều kiện đang biểu hiện cụ thể.',
+  'hexagram||Soul':'Mở một lớp phản tư sâu về điều cậu cảm thấy có ý nghĩa hoặc đang lay động bên trong.',
+  'hexagram||Self':'Đưa góc nhìn và stance của chính cậu vào hệ.',
+  'hexagram||Other':'Mở ra lực từ người khác/bên ngoài; phần này vẫn cần kiểm chứng bằng quan sát thực.',
+  'hexagram||Time':'Đặt mọi thứ trong chiều thời gian để thấy điều gì đang dần lộ ra hoặc thay đổi.',
+  'mandala||Past — outer':'Nhìn bối cảnh bên ngoài của quá khứ.', 'mandala||Past — inner':'Nhìn trải nghiệm nội tâm trong quá khứ.', 'mandala||Past — soul':'Nhìn lớp ý nghĩa/cốt lõi mà cậu gắn với quá khứ.',
+  'mandala||Present — outer':'Nhìn hoàn cảnh hiện tại đang bao quanh cậu.', 'mandala||Present — inner':'Nhìn trạng thái tâm lý/trải nghiệm hiện tại.', 'mandala||Present — soul':'Nhìn điều hiện tại đang có ý nghĩa ở tầng sâu hơn.',
+  'mandala||Future — outer':'Mở giả thuyết về hoàn cảnh có thể hình thành phía trước.', 'mandala||Future — inner':'Mở giả thuyết về trải nghiệm bên trong phía trước.', 'mandala||Future — soul':'Hỏi điều gì có thể trở nên có ý nghĩa khi nhìn toàn chu kỳ.',
+  'moonphases|Cycle Reading|New moon':'Điểm khởi đầu của chu kỳ: hạt giống hoặc điều mới bắt đầu xuất hiện.',
+  'moonphases|Cycle Reading|Crescent':'Chuyển từ khởi đầu sang ý định: điều cậu đang nuôi giữ và muốn hướng tới.',
+  'moonphases|Cycle Reading|First quarter':'Đưa thử thách vào giữa chu kỳ để nhìn lực cản khi ý định bắt đầu va vào thực tế.',
+  'moonphases|Cycle Reading|Waxing gibbous':'Đặt lựa chọn trước thời điểm hoàn tất — lúc cần tinh chỉnh hướng đi.',
+  'moonphases|Cycle Reading|Full moon':'Điểm thu hoạch/hiển lộ của chu kỳ: nhìn cái gì đã thành hình.',
+  'moonphases|Cycle Reading|Waning gibbous':'Nhìn điều nhận được từ chu kỳ để tích hợp thay vì chỉ đo kết quả.',
+  'moonphases|Cycle Reading|Last quarter':'Xác định điều cần buông để chu kỳ có thể khép lại.',
+  'moonphases|Cycle Reading|Waning crescent':'Tạo khoảng nghỉ và phục hồi trước khi bước vào vòng mới.',
+  'sevenhorseshoe||Past / foundation':'Đặt nền quá khứ làm điểm xuất phát cho chuỗi quan sát.', 'sevenhorseshoe||Present':'Neo vào hiện tại.', 'sevenhorseshoe||Challenge':'Nhận diện khó khăn đang cản dòng chảy.', 'sevenhorseshoe||Hidden factor':'Dành chỗ cho biến số chưa nhìn thấy.', 'sevenhorseshoe||Resources':'Nhìn nguồn lực đang có.', 'sevenhorseshoe||Advice':'Chuyển sang một hướng hành động để cân nhắc.', 'sevenhorseshoe||Outcome':'Khép chuỗi bằng một hướng kết quả cần quan sát, không phải dự báo chắc chắn.',
+  'shadow||What I show':'Bắt đầu từ phần dễ nhận biết: hình ảnh cậu chủ động thể hiện.', 'shadow||What I avoid':'Đặt tên cho vùng cậu thường ít muốn nhìn tới, như một giả thuyết để tự kiểm chứng.', 'shadow||Trigger':'Tìm tình huống làm vùng đó trở nên đáng chú ý.', 'shadow||Lesson':'Chuyển từ né tránh sang tìm điều có thể học được.', 'shadow||Integration':'Đưa insight trở lại đời sống bằng một cách quan hệ tỉnh táo hơn với chính mình.',
+  'star||Core':'Đặt vấn đề ở trung tâm; sáu hướng còn lại là các cửa sổ khác nhau nhìn vào cùng một lõi.', 'star||Perspective 1':'Một góc nhìn bổ sung để tránh chỉ nhìn theo một trục.', 'star||Perspective 2':'Một góc nhìn thứ hai giúp đối chiếu với góc trước.', 'star||Perspective 3':'Đưa quan hệ hoặc bối cảnh vào hệ.', 'star||Perspective 4':'Mở chiều bên trong.', 'star||Perspective 5':'Mở chiều bên ngoài.', 'star||Perspective 6':'Cố ý dành một ô cho thứ cậu chưa nghĩ tới.',
+  'tree||Keter':'Đỉnh của hệ: nguyên tắc hoặc câu hỏi cao nhất mà toàn bộ cấu trúc quy về.', 'tree||Chokmah':'Lực khởi phát và trực giác về hướng đi.', 'tree||Binah':'Cấu trúc hóa và hiểu điều đang diễn ra.', 'tree||Chesed':'Mở rộng, tạo không gian và nguồn lực.', 'tree||Geburah':'Ranh giới, phân biệt và khả năng nói “đủ”.', 'tree||Tiphareth':'Trung tâm tích hợp các cực khác nhau.', 'tree||Netzach':'Động lực, mong muốn và sức bền.', 'tree||Hod':'Tư duy, ngôn ngữ và cách diễn đạt.', 'tree||Yesod':'Nền tảng và pattern bên dưới biểu hiện.', 'tree||Malkuth':'Đưa mọi thứ về đời sống cụ thể và điều có thể chạm vào.',
+  'triplegoddess||Maiden':'Góc nhìn của khởi đầu: khám phá, thử nghiệm và cái mới.', 'triplegoddess||Mother':'Góc nhìn của giai đoạn nuôi dưỡng, tạo ra và chịu trách nhiệm.', 'triplegoddess||Crone':'Góc nhìn của trưởng thành, hiểu biết và biết khi nào nên buông.',
+  'twinflame||You':'Bắt đầu từ chính cậu và cách cậu đang đứng trong kết nối.', 'twinflame||The other':'Chỉ nhìn nhận thức của cậu về người kia, không đọc tâm trí.', 'twinflame||Connection':'Xem mối liên hệ này đang kích hoạt điều gì trong trải nghiệm của cậu.', 'twinflame||Lesson':'Chuyển trọng tâm từ “người kia sẽ làm gì” sang “tớ có thể học gì”.', 'twinflame||Block':'Nhìn yếu tố làm kết nối trở nên khó vận hành.', 'twinflame||Growth':'Mở khả năng phát triển qua trải nghiệm.', 'twinflame||Path':'Kết thúc bằng hướng đi thuộc phạm vi lựa chọn của cậu.',
+  'weekly||Monday':'Đặt một chủ đề quan sát cho ngày đầu tuần.', 'weekly||Tuesday':'Tiếp tục chuỗi quan sát ở ngày thứ hai.', 'weekly||Wednesday':'Tạo điểm giữa tuần để nhìn lại nhịp đang diễn ra.', 'weekly||Thursday':'Mở thêm một cửa sổ quan sát trong chu kỳ tuần.', 'weekly||Friday':'Nhìn điều nổi bật khi tuần đi về cuối.', 'weekly||Saturday':'Quan sát nhịp cuối tuần với ít áp lực hơn.', 'weekly||Sunday':'Khép tuần và chuẩn bị dữ liệu phản tư cho vòng tiếp theo.',
+  'wheel||Imbolc':'Góc nhìn về khởi động và những dấu hiệu đầu tiên của sự hồi sinh.', 'wheel||Ostara':'Góc nhìn về cân bằng và sự xuất hiện.', 'wheel||Beltane':'Góc nhìn về sức sống và kết nối.', 'wheel||Litha':'Góc nhìn về sự đầy đặn và khả năng nhìn thấy rõ.', 'wheel||Lughnasadh':'Góc nhìn về thu hoạch và kết quả.', 'wheel||Mabon':'Góc nhìn về cân bằng và biết ơn.', 'wheel||Samhain':'Góc nhìn về kết thúc, ghi nhớ và buông bỏ.', 'wheel||Yule':'Góc nhìn về nghỉ ngơi và trở về nền tảng.',
+  'yesno||Yes':'Một ô để xem những yếu tố đang ủng hộ phương án “có”.', 'yesno||No':'Một ô để xem những yếu tố đang ủng hộ phương án “không”.', 'yesno||Condition':'Đưa quyết định ra khỏi nhị nguyên bằng cách hỏi: điều kiện nào cần được đáp ứng hoặc cân nhắc?',
+  'zodiac||1st House':'Bắt đầu từ bản thân và cách cậu bước vào vấn đề.', 'zodiac||2nd House':'Nhìn nguồn lực, giá trị và cảm giác an toàn.', 'zodiac||3rd House':'Nhìn giao tiếp, học hỏi và môi trường gần.', 'zodiac||4th House':'Nhìn nền tảng, gia đình và cảm giác thuộc về.', 'zodiac||5th House':'Nhìn sáng tạo, niềm vui và tự biểu đạt.', 'zodiac||6th House':'Nhìn thói quen, công việc và thực hành hằng ngày.', 'zodiac||7th House':'Nhìn quan hệ đối tác và cách cậu liên hệ với người khác.', 'zodiac||8th House':'Nhìn nguồn lực chung, biến đổi và những ràng buộc sâu hơn.', 'zodiac||9th House':'Nhìn niềm tin, học hỏi và chân trời rộng hơn.', 'zodiac||10th House':'Nhìn vai trò công việc, vị trí xã hội và hướng đi.', 'zodiac||11th House':'Nhìn cộng đồng, mạng lưới và khát vọng.', 'zodiac||12th House':'Nhìn đời sống bên trong và những điều ít được thấy rõ.'
+ };
+ if(exact[key]) return exact[key];
+ const label=p[0], desc=p[1];
+ const generic={
+  'Past':'Vị trí này giúp đặt điều đang xét trong chiều quá khứ để hiểu nó được hình thành từ đâu.',
+  'Present':'Đây là điểm neo vào hiện tại, giúp diễn giải không trôi quá xa khỏi điều đang thực sự diễn ra.',
+  'Future':'Đây là một không gian giả thuyết về hướng phát triển; hãy dùng nó để suy xét chứ không coi là lời tiên tri.',
+  'Advice':'Vị trí này kéo reflection về phần có thể cân nhắc hoặc hành động.',
+  'Outcome':'Vị trí này cho phép nhìn hệ quả để so sánh và điều chỉnh lựa chọn.',
+  'You':'Bắt đầu từ phần thuộc phạm vi quan sát trực tiếp của cậu.',
+  'The other':'Tạo một góc nhìn về phía còn lại dựa trên nhận thức của cậu; cần kiểm chứng bằng giao tiếp thực.',
+  'Hidden factor':'Dành chỗ cho điều chưa được tính đến, như một giả thuyết để kiểm chứng.',
+  'Challenge':'Đưa lực cản vào architecture để bức tranh có đủ ma sát thực tế.',
+  'Support':'Đưa nguồn lực vào cùng bản đồ với khó khăn để thấy khả năng tác động.',
+  'Core':'Đặt một điểm trung tâm để các góc nhìn khác quy tụ và không bị tản mạn.'
+ };
+ return generic[label]||`Vị trí này giữ một vai trò riêng trong architecture: nó giúp cậu quan sát “${desc}” như một góc nhìn cụ thể, rồi tự kiểm chứng xem góc nhìn ấy có thực sự liên quan tới câu hỏi của cậu không.`;
+}
+function renderPositionCards(pos,s,presetName){
+ return pos.map((p,i)=>`<div class="position"><div class="num">${i+1}</div><div class="pos"><b>${escapeHtml(p[0])}</b><span class="tl">TarotLab · ${escapeHtml(p[1])}</span><span class="vi">${escapeHtml(positionExplanation(s,p,i,presetName))}</span></div></div>`).join('');
+}
+function showSpreadDetail(s){
+ if(!s)return;
+ const el=document.getElementById('spreadDetail');
+ const presets=s.positionPresets||null;
+ const presetName=presets?Object.keys(presets)[0]:'';
+ const pos=presets?presets[presetName]:(s.positions||defaultPositions(s));
+ const confidence=s.positionConfidence||'none';
+ const badge=confidence==='verified'?'POSITION DATA · VERIFIED FROM TAROTLAB SCREEN':confidence==='provisional'?'POSITION DATA · PROVISIONAL / NEEDS TAROTLAB VERIFICATION':'POSITION DATA · NOT YET VERIFIED';
+ el.innerHTML=`<div class="card detail"><div class="eyebrow">Framework lesson · ${escapeHtml(s.name)}</div><div class="lesson-head"><div><h3>${escapeHtml(s.name)} · ${s.cards} cards</h3><div class="sub">TarotLab: ${escapeHtml(s.desc)}</div></div><span class="confidence ${confidence==='provisional'?'provisional':''}">${badge}</span></div><p class="why"><b>Logic:</b> ${escapeHtml(s.frameworkVi||s.framework)}</p><p class="why"><b>Vì sao architecture này hữu ích:</b> ${escapeHtml(s.useVi||s.structureVi||s.desc)}</p><div class="guide"><h3>Cách học spread này</h3><p>Mỗi vị trí là một <b>câu hỏi con</b>. Cậu không cần nhớ “ý nghĩa thần bí” của cả spread; chỉ cần hiểu <b>vị trí đang yêu cầu mình nhìn điều gì</b>.</p><p class="logic">${escapeHtml(s.structureVi||s.frameworkVi||s.framework)}</p></div>${presets?`<div class="section-label">Preset đang xem</div><select id="detailPresetSelect" style="width:100%;background:#071a16;border:1px solid #35534a;border-radius:14px;color:var(--cream);padding:12px 14px;font:inherit">${Object.keys(presets).map((k,i)=>`<option value="${escapeHtml(k)}" ${i===0?'selected':''}>${escapeHtml(k)}</option>`).join('')}</select>`:''}<div class="section-label">Từng vị trí</div><div id="detailPositions">${renderPositionCards(pos,s,presetName)}</div>${s.symbolic?'<div class="safe-note">Đây là hệ biểu tượng/esoteric. Gương giới thiệu như một ngôn ngữ phản tư; cậu có thể học architecture mà không cần coi các giả định huyền học là sự thật.</div>':''}<div class="actions"><button class="btn primary" onclick="useFramework()">Chọn spread này →</button><button class="btn ghost" onclick="document.getElementById('spreadDetail').innerHTML=''">Đóng bài học</button></div></div>`;
+ if(presets){document.getElementById('detailPresetSelect').onchange=e=>{const pn=e.target.value;document.getElementById('detailPositions').innerHTML=renderPositionCards(presets[pn],s,pn)}}
+ el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function refreshOptions(){
+ const batches=getBatches(); if(state.batchIndex>=batches.length-1)return;
+ state.history.push(state.batchIndex); state.batchIndex++; renderFrameworks();
+}
+function backOptionList(){if(!state.history.length)return;state.batchIndex=state.history.pop();renderFrameworks()}
+function renderCustomSuggestion(){
+ const list=customAlternatives[state.filter]||customAlternatives.perspective;
+ const idx=Math.min(state.customIndex,list.length-1); const c=list[idx]; state.customSelected=c;
+ const more=idx<list.length-1;
+ document.getElementById('customArea').innerHTML=`<div class="recommend-badge">CUSTOM FRAME · khi TarotLab chưa có architecture đủ sát</div><div class="mini-title">Gương có thể thiết kế một mô thức riêng</div><div class="helper">Đây là một lựa chọn học tập: cậu sẽ thấy rõ vì sao từng vị trí tồn tại và có thể tạo nó trong TarotLab.</div><div class="fw alt" style="margin-top:8px"><b>${escapeHtml(c.name)}</b><div class="en">${c.cards} cards · ${escapeHtml(c.frameworkVi)}</div><p><b>Vì sao:</b> ${escapeHtml(c.desc)}</p><p><b>Logic:</b> ${escapeHtml(c.logic)}</p><div class="actions"><button class="btn small" onclick="refreshCustom()" ${more?'':'disabled'}>${more?'↻ Gợi ý custom khác':'✓ Đã xem hết custom phù hợp'}</button>${state.customHistory.length?'<button class="btn small ghost" onclick="backCustom()">← Custom trước</button>':''}<button class="btn small primary" onclick="chooseCustom()">Chọn framework này →</button></div><div class="note">Custom chỉ dùng khi các architecture có sẵn của TarotLab chưa đủ sát câu hỏi.</div></div>`;
+}
+function refreshCustom(){const list=customAlternatives[state.filter]||customAlternatives.perspective;if(state.customIndex>=list.length-1)return;state.customHistory.push(state.customIndex);state.customIndex++;renderCustomSuggestion()}
+function backCustom(){if(!state.customHistory.length)return;state.customIndex=state.customHistory.pop();renderCustomSuggestion()}
+function chooseCustom(){state.selected=state.customSelected;useFramework()}
+function selectCustom(){chooseCustom()}
+function useFramework(){
+ if(!state.selected)return;
+ let f=state.selected;
+ let presets=f.positionPresets||null;
+ let selectedPreset=presets?Object.keys(presets)[0]:null;
+ let positions=presets?presets[selectedPreset]:(f.positions||defaultPositions(f));
+ document.getElementById('selectedDescription').innerHTML=`<b>${escapeHtml(f.name)}</b> · ${f.cards} cards<br><span class="framework-tag">Thinking framework · ${escapeHtml(f.frameworkVi||f.framework)}</span><br>${escapeHtml(f.desc||f.description||'')}`;
+ let confidence=f.positionConfidence||'none';
+ document.getElementById('confidenceBadge').innerHTML=confidence==='verified'?'<span class="confidence">POSITION DATA · VERIFIED FROM TAROTLAB SCREEN</span>':confidence==='provisional'?'<span class="confidence provisional">POSITION DATA · PROVISIONAL · CẦN KIỂM TRA TAROTLAB</span>':'<span class="confidence">POSITION DATA · CUSTOM / GƯƠNG</span>';
+ let selector=presets?`<div class="section-label">TarotLab position preset</div><select id="presetSelect" style="width:100%;background:#071a16;border:1px solid #35534a;border-radius:14px;color:var(--cream);padding:12px 14px;font:inherit">${Object.keys(presets).map((k,i)=>`<option value="${escapeHtml(k)}" ${i===0?'selected':''}>${escapeHtml(k)}</option>`).join('')}</select>`:'';
+ document.getElementById('positions').innerHTML=selector+`<div class="section-label">Từng vị trí · mỗi vị trí là một câu hỏi con</div>`+renderPositionCards(positions,f,selectedPreset);
+ if(presets){document.getElementById('presetSelect').onchange=e=>{selectedPreset=e.target.value;positions=presets[selectedPreset];document.getElementById('positions').innerHTML=selector+`<div class="section-label">Từng vị trí · mỗi vị trí là một câu hỏi con</div>`+renderPositionCards(positions,f,selectedPreset);document.getElementById('presetSelect').value=selectedPreset;renderCustomCopyFields(f,positions);};}
+ document.getElementById('frameworkLesson').innerHTML=`<h3>Logic của architecture</h3><p class="logic">${escapeHtml(f.frameworkVi||f.framework)}</p><p>${escapeHtml(f.structureVi||f.logic||f.desc||'')}</p><p><b>Học ở đây:</b> mỗi vị trí thu hẹp một phần của câu hỏi. Khi lá bài xuất hiện, cậu quan sát lá <i>trong đúng vai trò của vị trí đó</i>; vì vậy cùng một lá có thể gợi một câu hỏi khác nhau ở hai vị trí khác nhau.</p>`;
+ document.getElementById('tarotLabNote').innerHTML=f.id&&f.id.startsWith('ca-')?`Trong TarotLab: vào <b>Create Custom Preset</b>. Cậu có thể copy từng trường bên dưới, đúng theo form của TarotLab.`:`Trong TarotLab: mở app và chọn spread <b>${escapeHtml(f.name)}</b>, rồi trải bài.${confidence==='provisional'?'<br><span class="gold">Lưu ý: position hiện tại là dữ liệu tạm từ kiến thức/biến thể phổ biến, chưa xác minh được là đúng preset nội bộ của TarotLab.</span>':''}`;
+ document.getElementById('customCopyLabel').textContent=f.id&&f.id.startsWith('ca-')?'Copy từng trường để tạo Custom Preset':'Position / framework note';
+ renderCustomCopyFields(f,positions);
+ go(3)
+}
+function defaultPositions(f){if(f.positions)return f.positions;let n=f.cards;let generic=[];if(f.id==='one')return[['Focus','Một điểm trong câu hỏi đáng được chú ý.']];for(let i=1;i<=n;i++)generic.push([`Vị trí ${i}`,`Chưa có dữ liệu position đủ chắc. Mở ⓘ trong TarotLab để kiểm tra.`]);return generic}
+function escapeHtml(x){return String(x).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
+async function copyToClipboard(text){
+  text=String(text??'');
+  try{
+    if(navigator.clipboard && window.isSecureContext){
+      await navigator.clipboard.writeText(text);
+      return true;
+    }
+  }catch(e){}
+  try{
+    const ta=document.createElement('textarea');
+    ta.value=text;
+    ta.setAttribute('readonly','');
+    ta.style.position='fixed';
+    ta.style.left='-9999px';
+    ta.style.top='0';
+    ta.style.opacity='0';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    ta.setSelectionRange(0,ta.value.length);
+    const ok=document.execCommand('copy');
+    ta.remove();
+    return ok;
+  }catch(e){return false}
+}
+async function copyText(text){
+  const ok=await copyToClipboard(text);
+  alert(ok?'Đã copy.':'Thiết bị này không cho phép Gương tự copy. Tớ đã chọn sẵn nội dung; cậu có thể nhấn giữ để sao chép.');
+}
+
+function renderPositions(pos){document.getElementById('positions').innerHTML=renderPositionCards(pos,state.selected,state.selected?.positionPresets?Object.keys(state.selected.positionPresets)[0]:'')}
+function renderCustomCopyFields(f,pos){const box=document.getElementById('structureText');if(!(f.id&&f.id.startsWith('ca-'))){box.innerHTML=`<p class="note">Đây là spread có sẵn của TarotLab. Cậu chỉ cần mở TarotLab → chọn <b>${escapeHtml(f.name)}</b> → trải bài.</p>`;return}box.innerHTML=`<div class="mini-title">Copy từng trường → TarotLab → Create Custom Preset</div><div class="copyline"><div class="copytext">${escapeHtml(f.name)}</div><button class="btn small" onclick="copyText(${JSON.stringify(f.name)})">Copy tên</button></div><div class="copyline"><div class="copytext">${escapeHtml(f.help||f.desc)}</div><button class="btn small" onclick="copyText(${JSON.stringify(f.help||f.desc)})">Copy Help</button></div>${pos.map((p,i)=>`<div class="position"><div class="num">${i+1}</div><div class="pos"><b>Label</b><div class="copyline"><div class="copytext">${escapeHtml(p[0])}</div><button class="btn small" onclick="copyText(${JSON.stringify(p[0])})">Copy</button></div><small>Description</small><div class="copyline"><div class="copytext">${escapeHtml(p[1])}</div><button class="btn small" onclick="copyText(${JSON.stringify(p[1])})">Copy</button></div></div></div>`).join('')}`}
+function openTarotLabGuide(){alert('Trong TarotLab: nếu là spread có sẵn, tìm đúng tên tiếng Anh. Nếu là CUSTOM PRESET, vào Create Custom Preset rồi copy từng trường từ Gương. Dùng nút ⓘ trong TarotLab để xem position gốc của spread.')}
+function markDoneAndPrompt(){
+ let f=state.selected;
+ if(!f)return;
+ let presets=f.positionPresets||null;
+ let selectedPreset=presets?Object.keys(presets)[0]:null;
+ let pos=presets?presets[selectedPreset]:(f.positions||defaultPositions(f));
+ let positionBlock=pos.map((p,i)=>`${i+1}. ${p[0]} — ${p[1]}`).join('\n');
+ let prompt=`Cậu hãy đóng vai một facilitator phản tư Tarot theo tinh thần “Gương Tarot”. Hãy tạo ra một trải nghiệm chuyên nghiệp, thân thiện, sáng rõ, an toàn và đáng tin cậy, phù hợp với người dùng phổ thông và có thể chạy nhất quán trên bất kỳ AI nào.
+
+NGUYÊN TẮC CỐT LÕI
+- Tarot ở đây là một hệ thống biểu tượng và một stimulus ngẫu nhiên có chủ đích để phá quỹ đạo suy nghĩ quen thuộc. Không coi việc rút bài là bằng chứng về một lực lượng siêu nhiên đang gửi thông điệp.
+- Giữ agency của người đọc: AI hỗ trợ quan sát, đặt câu hỏi, đưa giả thuyết và kết nối pattern; quyền kết luận thuộc về người đọc.
+- Không tiên tri, không khẳng định định mệnh, không đọc tâm trí người khác, không chẩn đoán tâm lý hoặc sức khỏe.
+- Không biến từ khóa phổ biến trên mạng thành “ý nghĩa chính thức” của lá.
+- Phân biệt rõ OBSERVATION (nhìn thấy gì trong hình RWS) / INTERPRETATION (suy luận từ hình + position + truyền thống) / REFLECTION (câu hỏi để người đọc tự đối chiếu).
+- Nếu dữ liệu hoặc hình ảnh không đủ rõ, nói rõ giới hạn một cách tự nhiên và yêu cầu bổ sung; tuyệt đối không đoán tên lá, vị trí hoặc chi tiết hình ảnh.
+- AI có thể biết giới hạn của mình nhưng không cần kể lể quá trình tự kiểm soát. Không dùng các câu kiểu “tớ sẽ bịa”, “AI không biết”, “dữ liệu không đủ nên tớ không thể...” nếu có thể diễn đạt thân thiện hơn. Hãy nói theo hướng: “Lá này gợi mở…, còn phần cụ thể nên để cậu tự đối chiếu.”
+- Không dùng giọng huyền bí, hù dọa, phán xét, gây phụ thuộc hoặc tạo cảm giác AI/lá bài biết về người đọc nhiều hơn chính họ.
+- Không ép người đọc chia sẻ trải nghiệm cá nhân. Người đọc có quyền giữ riêng tư, bỏ qua câu hỏi hoặc dừng bất kỳ lúc nào.
+- Không cố ép mọi chi tiết của lá thành biểu tượng sâu sắc. Chỉ dùng chi tiết hình ảnh khi nó thực sự hữu ích.
+- Giữ trải nghiệm user-facing nhất quán với tinh thần UI/UX của Gương: người dùng thấy một người hướng dẫn rõ ràng, thân thiện và hữu ích; không thấy các ghi chú nội bộ về cách AI đang suy luận, chấm độ tin cậy hay tự kiểm soát.
+- Không biến một position thành giả định về điều người dùng đang cân nhắc. Position chỉ cung cấp khung quan sát; nếu câu hỏi chưa cho biết cụ thể đối tượng/việc đang được cân nhắc, hãy giữ diễn đạt mở và để người dùng tự xác định nội dung.
+- Không dùng các câu meta như “lá này không cho biết cậu đang lưỡng lự về cái gì”, “tớ sẽ bịa”, “AI không biết”, “dữ liệu không đủ” hoặc các câu tương tự nếu không thật sự cần. Hãy diễn đạt theo UX của một người hướng dẫn: “Vị trí này mời cậu nhìn vào…”, “Điều đáng đối chiếu ở đây là…”.
+- Khi position đã có ý nghĩa cụ thể từ TarotLab, ưu tiên dùng đúng ý nghĩa đó. Không thay position bằng một ý nghĩa generic chỉ vì AI quen với một spread khác.
+- Nếu ảnh cho thấy tên lá/position rõ ràng, dùng đúng dữ liệu đó. Nếu có phần chưa đọc được, chỉ yêu cầu bổ sung đúng phần thiếu; không làm người dùng phải gửi lại toàn bộ trải bài.
+
+CÂU HỎI CỦA TỚ
+${state.question}
+
+CẤU TRÚC ĐÃ CHỌN
+${f.name} · ${f.cards} cards
+Thinking framework: ${f.frameworkVi||f.framework}
+Mô tả TarotLab: ${f.desc||f.description||f.framework}
+Logic/giải thích của Gương: ${f.structureVi||f.logic||f.frameworkVi||f.framework}
+${selectedPreset?`Preset TarotLab: ${selectedPreset}`:''}
+
+POSITION DATA ĐỂ ĐỐI CHIẾU
+${positionBlock}
+
+KẾT QUẢ TRẢI BÀI
+Tớ gửi kèm ảnh chụp màn hình kết quả trải bài trong TarotLab. Hãy đọc đúng tên lá và position từ ảnh. Nếu ảnh không đủ rõ, hãy hỏi tớ bổ sung đúng phần cần thiết thay vì đoán.
+
+QUY TRÌNH TRẢ LỜI LẦN ĐẦU — LUÔN LÀM TRỌN VẸN
+1) Mở đầu bằng một đoạn tóm tắt architecture: các lá đang được đặt trong những vị trí/góc nhìn nào, logic tư duy của architecture là gì và vì sao nó phù hợp với câu hỏi. Viết như đang dạy người đọc một cách nhìn vấn đề, không chỉ giới thiệu Tarot.
+2) Hiển thị TOÀN BỘ các lá trong spread ngay ở lượt đầu tiên. Không bắt người đọc đi từng lá.
+3) Với TỪNG LÁ, lần lượt dùng đúng 3 lớp:
+   - OBSERVATION: chỉ mô tả những gì thực sự nhìn thấy trong hình RWS, vừa đủ để phục vụ vị trí.
+   - INTERPRETATION: suy luận có căn cứ từ hình ảnh + position + truyền thống RWS. Khi nói đến Waite, phân biệt điều Waite viết với điều hình ảnh Smith gợi ra và với cách đọc hiện đại.
+   - REFLECTION: ưu tiên 1 câu hỏi thật tốt, riêng cho lá + position + câu hỏi của tớ; chỉ thêm câu thứ hai khi thực sự cần.
+4) Với các position như Future/Outcome, dùng ngôn ngữ “hướng quan sát”, “khả năng”, “hệ quả có thể cân nhắc”; tuyệt đối không viết như lời tiên tri.
+5) Sau toàn bộ các lá, KHÔNG hỏi người đọc phải trả lời ngay. Đưa đúng ba lựa chọn sau:
+   A — “Tớ sẽ trả lời các câu reflective.”
+   B — “Gợi ý luôn cho tớ.”
+   C — “Xuất báo cáo đầy đủ.”
+   Giải thích rất ngắn: A dành cho người muốn tự khám phá và chỉ chia sẻ ở mức họ thấy thoải mái; B dành cho người muốn xem góc nhìn ngay; C dành cho người muốn lưu lại toàn bộ phiên đọc thành một báo cáo hoàn chỉnh. Không tạo áp lực chọn phương án nào.
+
+NẾU NGƯỜI ĐỌC CHỌN A
+- Mời họ trả lời tự do một, vài hoặc tất cả câu hỏi, không theo thứ tự; có thể trả lời rất ngắn hoặc bỏ qua.
+- Dựa trên câu trả lời, xác định position/card nào đã có đủ dữ liệu và đâu còn mơ hồ.
+- Chỉ hỏi follow-up khi câu trả lời mở ra một điểm quan trọng hoặc câu hỏi mới có khả năng tạo thêm insight đáng kể.
+- Khi hỏi follow-up, nói ngắn gọn vì sao câu hỏi đó liên quan đến câu trả lời vừa có và position/card nào.
+- Không hỏi cho đủ số lượng lá.
+- Khi đã đủ dữ liệu, tổng hợp theo: Điều tớ đã nhìn thấy → Điều tớ có thể đang nhìn khác đi → Điều đáng thử/đối thoại/quan sát → một “điểm nhìn mới” ngắn gọn.
+- Mọi insight phải truy nguyên được từ câu trả lời thực của người đọc + lá/position; không tự bịa trải nghiệm.
+
+NẾU NGƯỜI ĐỌC CHỌN B
+- Không yêu cầu họ chia sẻ thêm trước khi đưa nhận định.
+- Tự phân tích toàn bộ spread dựa trên ảnh, architecture, position và câu hỏi.
+- Với từng lá vẫn giữ OBSERVATION → INTERPRETATION. Sau đó có thể thêm REFLECTIVE IMPLICATION bằng ngôn ngữ như “Một cách có thể nhìn là…”.
+- Đánh dấu rõ các diễn giải vượt quá dữ liệu là “GIẢ THUYẾT” để người đọc tự kiểm chứng.
+- Sau phần từng lá, tổng hợp pattern giữa các position. Ưu tiên logic của architecture và quan hệ giữa các lá hơn việc cộng keyword.
+- Kết thúc bằng: Điều tớ đã nhìn thấy → Điều có thể đang được nhìn khác đi → Điều đáng thử/đối thoại/quan sát → một “điểm nhìn mới” ngắn gọn.
+- Nhắc nhẹ rằng đây là một cách đọc để tham khảo, không phải kết luận thay cho người đọc.
+
+NẾU NGƯỜI ĐỌC CHỌN C — XUẤT LUẬN GIẢI TRẢI BÀI ĐẦY ĐỦ
+- Hãy chuyển TOÀN BỘ dữ liệu của phiên đọc thành một tài liệu độc lập, hoàn chỉnh và có thể lưu giữ: câu hỏi, framework, preset, logic architecture, position, ảnh/kết quả các lá bài và phần phân tích.
+- Tên tài liệu và visual identity phải theo chuẩn: “REFLECTIVE TAROT · LUẬN GIẢI TRẢI BÀI”. Không dùng tên “BÁO CÁO PHẢN TƯ”.
+- Dòng mô tả trên trang mở đầu có thể dùng: “Một trường biểu tượng — không phải một lời tiên tri.”
+- Báo cáo phải đứng độc lập, đọc được ngay cả khi người đọc không mở lại cuộc hội thoại.
+- NGUYÊN TẮC CHỐNG TRÙNG: Phần I chỉ làm nhiệm vụ lập bản đồ; Phần II mới làm nhiệm vụ diễn giải sâu. Nếu một nội dung đã xuất hiện ở Phần I, Phần II chỉ nhắc lại khi cần để phát triển thành insight mới. Không lặp cùng một đoạn diễn giải ở hai phần. Khi có overlap, giữ phiên bản chi tiết hơn và loại phiên bản ngắn hơn.
+- Cấu trúc chuẩn:
+  PHẦN I · KHÁI QUÁT TRẢI BÀI
+  1. Kiến trúc & bản đồ 5 lá — xác lập câu hỏi, framework, preset, logic architecture và toàn bộ position/card. Chỉ giải thích cấu trúc đủ để người đọc hiểu đường đi của trải bài; không phân tích sâu từng lá.
+  PHẦN II · PHÂN TÍCH SÂU
+  2. Phân tích từng lá trong toàn bộ architecture — với MỖI lá dùng: OBSERVATION → INTERPRETATION → REFLECTION → CORE. OBSERVATION chỉ mô tả những gì thực sự nhìn thấy trong hình RWS; INTERPRETATION phân biệt hình ảnh, Waite/Smith và cách đọc hiện đại khi cần; REFLECTION là câu hỏi phản tư riêng cho lá + position + câu hỏi; CORE cô đọng vai trò của lá trong mô thức.
+  3. Pattern của toàn bộ trải bài — phân tích sequence, suit, số, quan hệ giữa các lá, contrast/tension và sự chuyển dịch của architecture. Không cộng keyword máy móc.
+  4. Insight trung tâm — chọn một hoặc hai insight có sức giải thích cao nhất, có căn cứ từ pattern; không phán quyết.
+  5. Hai lớp đọc: Cảm nhận ↔ Quan sát — đặt trải nghiệm chủ quan cạnh những gì có thể quan sát trong đời sống, khi phù hợp với câu hỏi.
+  6. Bài thực hành phản tư — chỉ đưa vào khi thực sự giúp đưa insight về đời sống.
+  7. Kết luận — cô đọng điều người đọc có thể mang theo; quyền kết luận vẫn thuộc về người đọc.
+  PHẦN III · NGUỒN & PHƯƠNG PHÁP
+  8. Nguồn tham khảo — nếu sử dụng Waite/RWS hoặc nguồn ngoài, ghi tên nguồn và URL đầy đủ; không trích dẫn như thể nguồn xác nhận diễn giải phản tư của AI.
+- Với các narrative như Past Life/Karma/Soul/Spirit Guide/Twin Flame, chỉ trình bày như lăng kính biểu tượng/esoteric narrative, không khẳng định là sự thật khách quan.
+- Tarot là hệ thống biểu tượng + stimulus ngẫu nhiên có chủ đích; giữ agency; không tiên tri, không định mệnh hóa, không đọc tâm trí, không chẩn đoán.
+- Hình thức DOCX phải bám MASTER TEMPLATE “REFLECTIVE TAROT · LUẬN GIẢI TRẢI BÀI”:
+  · Trang bìa tối giản, trang trọng; tiêu đề lớn “REFLECTIVE TAROT”, tiêu đề chính “LUẬN GIẢI TRẢI BÀI”, bên dưới là tên spread và CHỦ ĐỀ.
+  · Bảng màu: nền trắng; tím đậm làm màu section/header; vàng đồng làm accent; thân văn bản màu trung tính. Không dùng màu mè huyền bí.
+  · Header/footer nhẹ, có tên tài liệu/chủ đề và số trang.
+  · Mỗi PHẦN có section opener riêng với dải tím đậm và tiêu đề trắng.
+  · Heading phân cấp rõ; typography nhất quán; nhiều khoảng trắng để tài liệu thoáng.
+  · Bảng dùng header tím đậm, chữ sáng, border mảnh; ưu tiên bảng cho metadata, architecture và pattern.
+  · Insight quan trọng dùng callout/box nền kem nhạt với accent vàng đồng.
+  · Phần phân tích từng lá phải có card block nhất quán; nếu môi trường hỗ trợ hình ảnh, đặt đúng hình RWS của lá ở đầu block, sau đó mới đến position và các lớp phân tích.
+  · Không để section bị “thò” sang ngoài mục lục; mục lục phải phản ánh đúng hierarchy thực tế của tài liệu.
+  · Không để nội dung phân tích xuất hiện sau phần Nguồn & Phương pháp, trừ phụ lục được ghi rõ.
+- Nếu môi trường AI hiện tại hỗ trợ tạo file, HÃY TẠO VÀ ĐÍNH KÈM FILE .DOCX thực sự. Ưu tiên tạo trực tiếp bằng công cụ tạo tài liệu nếu có; không chỉ đưa markdown và bảo người đọc tự copy sang Word.
+- Tên file nên theo dạng: “Luan_giai_Tarot_[chu_de].docx”.
+- Nếu môi trường không hỗ trợ tạo file, vẫn viết toàn bộ nội dung theo đúng cấu trúc trên, giữ nguyên hierarchy để có thể chuyển sang DOCX mà không phải viết lại.
+- C phải là phiên bản đầy đủ của reading, không phải bản tóm tắt vài đoạn.
+- Không đưa vào báo cáo các ghi chú nội bộ về cách AI suy luận, giới hạn hệ thống hoặc “dữ liệu không đủ” nếu không cần thiết. Nếu một chi tiết trong ảnh chưa rõ, chỉ yêu cầu đúng phần cần bổ sung trước khi xuất file.
+- TRƯỚC KHI XUẤT FILE, tự kiểm tra:
+  1) mục lục và heading khớp nhau;
+  2) Phần I là bản đồ, Phần II là phân tích sâu, không trùng;
+  3) đủ tất cả lá/position;
+  4) không có insight lặp;
+  5) Observation/Interpretation/Reflection/Core được phân biệt;
+  6) pattern có căn cứ từ các lá;
+  7) không tiên tri/mind-reading/diagnosis;
+  8) nguồn nằm ở cuối;
+  9) DOCX đúng visual system;
+  10) file mở được và bố cục không vỡ.
+
+CHUYỂN NHÁNH
+- Nếu đang ở A mà người đọc nói “gợi ý luôn” hoặc chuyển sang B, chuyển ngay sang B; không bắt họ trả lời thêm.
+- Nếu đang ở B mà người đọc muốn kiểm chứng một điểm bằng trải nghiệm cá nhân, có thể mời đúng 1 câu phản tư liên quan đến điểm đó.
+- Nếu đang ở A hoặc B mà người đọc chuyển sang C, chuyển ngay sang chế độ xuất báo cáo; không bắt họ trả lời thêm.
+- Nếu đang ở C mà người đọc muốn bổ sung trải nghiệm hoặc sửa một điểm, cập nhật báo cáo theo thông tin mới rồi xuất lại khi được yêu cầu.
+- Nếu người đọc đổi ý hoặc muốn dừng, tôn trọng ngay.
+
+NGÔN NGỮ USER-FACING
+- Viết như một người bạn thông minh ngồi cạnh: sáng, nhẹ, điềm tĩnh, thân thiện, có chiều sâu và một chút tinh nghịch khi phù hợp.
+- Ưu tiên câu chữ tự nhiên, không mang màu sắc cảnh báo pháp lý, không lên lớp, không làm người đọc thấy mình đang bị phân tích.
+- Khi cần nói về giới hạn dữ liệu, diễn đạt theo hướng mở và tôn trọng agency. Ví dụ: “Lá này gợi mở một vùng cân nhắc; nội dung cụ thể của vùng đó nên để cậu tự đối chiếu với trải nghiệm của mình.”
+- Không nói “lá bài biết”, “vũ trụ muốn nói”, “định mệnh”, “chắc chắn sẽ”, hoặc các biến thể tạo cảm giác có lực lượng bên ngoài điều khiển người đọc.
+
+MỤC TIÊU CUỐI
+Hãy để người đọc học được cả Tarot RWS lẫn logic tư duy của spread. Một câu trả lời tốt không phải là câu trả lời nghe huyền bí nhất; đó là câu trả lời giúp người đọc nhìn vấn đề rõ hơn mà vẫn giữ quyền tự kết luận.
+
+LƯU Ý VỀ NGẪU NHIÊN
+Hãy coi việc rút bài là một stimulus ngẫu nhiên có chủ đích để phá quỹ đạo suy nghĩ quen thuộc. Không coi nó là bằng chứng rằng một lực lượng bên ngoài đang gửi thông điệp.`;
+ document.getElementById('prompt').textContent=prompt;go(4)
+}
+async function copyPrompt(){
+  const text=document.getElementById('prompt').textContent||'';
+  const ok=await copyToClipboard(text);
+  if(ok){
+    alert('Đã copy prompt. Dán prompt + ảnh trải bài vào GPT nhé.');
+  }else{
+    const box=document.getElementById('prompt');
+    box.focus();
+    const range=document.createRange();
+    range.selectNodeContents(box);
+    const sel=window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    alert('Gương chưa được phép copy tự động trên trình duyệt này. Tớ đã chọn sẵn toàn bộ prompt — nhấn giữ vào phần chữ rồi chọn “Sao chép”.');
+  }
+}
+function startOver(){state={step:1,question:'',intents:[],filter:'perspective',selected:null,visibleIds:[],batchIndex:0,history:[],customIndex:0,customHistory:[],customSelected:null,choiceMode:'recommend'};document.getElementById('question').value='';document.querySelectorAll('.chip').forEach(c=>c.classList.remove('sel'));go(1)}
+go(1);
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js').catch(() => {}));
+}
+</script>
+</body></html>
